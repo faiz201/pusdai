@@ -63,7 +63,7 @@
             <tr>
                 <th width="5%">No</th>
                 <th>Judul Laporan</th>
-                <th>Monitoring</th>
+                <th>Seksi</th>
                 <th>Status</th>
                 <th>Tanggal</th>
                 <th>Foto</th>
@@ -74,7 +74,7 @@
                 <tr>
                     <td class="text-center">{{ $key+1 }}</td>
                     <td>{{ $item->judul_laporan }}</td>
-                    <td>{{ $item->monitoring->nama_monitoring ?? '-' }}</td>
+                    <td>{{ $item->seksi->seksi ?? '-' }}</td>
                     <td class="text-center">{{ ucfirst($item->status) }}</td>
                     <td class="text-center">{{ $item->updated_at->format('d-m-Y') }}</td>
                     <td class="foto">

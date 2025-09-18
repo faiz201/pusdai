@@ -137,7 +137,7 @@ class InputLaporanController extends Controller
     /**  
      * Method untuk Form Laporan Input Laporan  
      */  
-    public function formLaporan()  
+    public function formInputLaporan()  
     {  
         return view('backend.v_inputlaporan.form', [  
             'judul' => 'Laporan Data Input Laporan',  
@@ -147,7 +147,7 @@ class InputLaporanController extends Controller
     /**  
      * Method untuk Cetak Laporan Input Laporan  
      */  
-    public function cetakLaporan(Request $request)  
+    public function cetakInputLaporan(Request $request)  
     {  
         $request->validate([  
             'tanggal_awal' => 'required|date',  

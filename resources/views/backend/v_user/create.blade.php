@@ -20,8 +20,7 @@ method="post" enctype="multipart/form-data">
                                     <input type="file" name="foto" class="form-control 
 @error('foto') is-invalid @enderror" onchange="previewFoto()"> 
                                     @error('foto') 
-                                    <div class="invalid-feedback alert-danger">{{ $message 
-}}</div> 
+                                    <div class="invalid-feedback alert-danger">{{ $message }}</div> 
                                     @enderror 
                                 </div> 
                             </div> 
@@ -30,41 +29,33 @@ method="post" enctype="multipart/form-data">
                                     <label>Hak Ases</label> 
                                     <select name="role" class="form-control @error('role') 
 is-invalid @enderror">
-                                    <option value="" {{ old('role') == '' ? 'selected' 
-: '' }}> - Pilih Hak Akses 
+                                    <option value="" {{ old('role') == '' ? 'selected' : '' }}> - Pilih Hak Akses 
                                             - 
                                         </option> 
-                                        <option value="1" {{ old('role') == '1' ? 
-'selected' : '' }}> Super Admin</option> 
-                                        <option value="0" {{ old('role') == '0' ? 
-'selected' : '' }}> Admin 
+                                        <option value="1" {{ old('role') == '1' ? 'selected' : '' }}> Super Admin</option> 
+                                        <option value="0" {{ old('role') == '0' ? 'selected' : '' }}> Admin 
                                         </option> 
                                     </select> 
                                     @error('role') 
-                                    <span class="invalid-feedback alert-danger" 
-role="alert"> 
+                                    <span class="invalid-feedback alert-danger" role="alert"> 
                                         {{ $message }} 
                                     </span> 
                                     @enderror 
                                 </div> 
                                 <div class="form-group"> 
                                     <label>Nama</label> 
-                                    <input type="text" name="nama" value="{{ old('nama') 
-}}" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama"> 
+                                    <input type="text" name="nama" value="{{ old('nama') }}" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama"> 
                                     @error('nama') 
-                                    <span class="invalid-feedback alert-danger" 
-role="alert"> 
+                                    <span class="invalid-feedback alert-danger" role="alert"> 
                                         {{ $message }} 
                                     </span> 
                                     @enderror 
                                 </div> 
                                 <div class="form-group"> 
                                     <label>Email</label> 
-                                    <input type="text" name="email" value="{{ old('email') 
-}}" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Email"> 
+                                    <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Email"> 
                                     @error('email') 
-                                    <span class="invalid-feedback alert-danger" 
-role="alert"> 
+                                    <span class="invalid-feedback alert-danger" role="alert"> 
                                         {{ $message }} 
                                     </span> 
                                     @enderror 
