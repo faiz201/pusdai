@@ -94,6 +94,12 @@
                                 <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Beranda</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('dashboard') }}"
+                                aria-expanded="false">
+                                <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('backend.user.index') }}"
                                 aria-expanded="false">
