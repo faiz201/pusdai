@@ -61,3 +61,8 @@ Route::get('backend/laporan/forminputlaporan', [InputLaporanController::class, '
 Route::post('backend/laporan/cetakinputlaporan', [InputLaporanController::class, 'cetakInputLaporan'])
     ->name('backend.laporan.cetakinputlaporan')
     ->middleware('auth');
+
+// Dashboard
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/export-excel', [App\Http\Controllers\DashboardController::class, 'exportExcel'])->name('dashboard.export.excel');
+Route::get('/dashboard/export-csv', [App\Http\Controllers\DashboardController::class, 'exportCsv'])->name('dashboard.export.csv');
