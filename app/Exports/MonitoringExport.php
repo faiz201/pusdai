@@ -27,7 +27,7 @@ class MonitoringExport implements FromView
             $query->where('unit', $this->filters['unit']);
         }
 
-        return view('dashboard.export', [
+        return view('backend.v_dashboard.export', [
             'data' => $query->get()
         ]);
     }
