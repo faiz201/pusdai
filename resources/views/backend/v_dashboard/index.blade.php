@@ -24,7 +24,7 @@
         <thead class="table-dark">
             <tr>
                 <th>No</th>
-                <th>UPG Unit Kerja</th>
+                <th>Satuan Kerja</th>
                 <th>Pembentukan UPG</th>
                 <th>Identifikasi Titik Rawan</th>
                 <th>Pemantauan Titik Rawan</th>
