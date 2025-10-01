@@ -3,39 +3,46 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Monitoring; // model data tabel kamu
+use App\Services\SatkerService;
+use App\Exports\SatkerExport;
+use App\Models\Satker;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\MonitoringExport;
 
 class DashboardController extends Controller
 {
+    protected $satkerService;
+
+    public function __construct(SatkerService $satkerService)
+    {
+        $this->satkerService = $satkerService;
+
+    }
+
     public function index(Request $request)
     {
         $tahun = $request->input('tahun');
-        $seksi = $request->input('seksi');
+        $unit  = $request->input('unit');
+        $satker = Satker::all();
 
-        $data = Monitoring::query();
+        $satker = $this->satkerService->getFiltered($tahun, $unit);
 
-        if ($tahun) {
-            $data->whereYear('created_at', $tahun);
-        }
-
-        if ($seksi) {
-            $data->where('seksi', $seksi);
-        }
-
-        $data = $data->get();
-
-        return view('backend.v_dashboard.index', compact('data', 'tahun', 'seksi'));
+        return view('backend.v_dashboard.index', compact('satker'));
     }
 
     public function exportExcel(Request $request)
     {
-        return Excel::download(new MonitoringExport($request->all()), 'monitoring.xlsx');
+        return Excel::download(
+            new SatkerExport($request->tahun, $request->unit),
+            'satker.xlsx'
+        );
     }
 
     public function exportCsv(Request $request)
     {
-        return Excel::download(new MonitoringExport($request->all()), 'monitoring.csv');
+        return Excel::download(
+            new SatkerExport($request->tahun, $request->unit),
+            'satker.csv',
+            \Maatwebsite\Excel\Excel::CSV
+        );
     }
 }

@@ -2,16 +2,27 @@
 
 namespace App\Exports;
 
+use App\Services\SatkerService;
 use App\Models\Dashboard;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
 
-class MonitoringExport implements FromCollection, WithHeadings, WithMapping
+class SatkerExport implements FromCollection, WithHeadings
 {
+    protected $tahun;
+    protected $unit;
+    protected $satkerService;
+
+    public function __construct($tahun = null, $unit = null)
+    {
+        $this->tahun = $tahun;
+        $this->unit  = $unit;
+        $this->satkerService = new SatkerService();
+    }
+
     public function collection()
     {
-        return Dashboard::all();
+        return $this->satkerService->getForExport($this->tahun, $this->unit);
     }
 
     public function map($m): array
@@ -34,25 +45,23 @@ class MonitoringExport implements FromCollection, WithHeadings, WithMapping
             $m->kategori,
         ];
     }
-
     public function headings(): array
     {
         return [
             'ID',
-            'Satuan Kerja',
-            'Konteks',
-            'Pembinaan Mental',
-            'Sosialisasi Antikorupsi',
-            'Edukasi Pencegahan',
-            'Pengendalian Gratifikasi',
-            'Pemantauan Perilaku',
-            'Pemantauan LHK',
-            'Pelaksanaan Monev ZI',
-            'Analisis Data Pegawai',
-            'Penanganan Hasil Survey',
-            'Penanganan Pengaduan',
-            'Total Skor',
-            'Kategori',
+            'konteks',
+            'pembinaan_mental',
+            'sosialisasi_antikorupsi',
+            'edukasi_pencegahan',
+            'pengendalian_gratifikasi',
+            'pemantauan_perilaku',
+            'pemantauan_lhk',
+            'pelaksanaan_monev_zi',
+            'analisis_data_pegawai',
+            'penanganan_hasil_survey',
+            'penanganan_pengaduan',
+            'Created At',
+            'Updated At',
         ];
     }
 }

@@ -2,56 +2,73 @@
 
 @section('content')
 <div class="container">
-    <h4 class="mb-4">Nilai Realisasi PPG</h4>
+    <h4 class="mb-4">Performa Pencegahan</h4>
 
-    <form method="GET" action="{{ route('dashboard') }}" class="d-flex mb-3">
-        <select name="tahun" class="form-control me-2">
-            <option value="">-- Filter Tahun --</option>
-            @for($i=2020; $i<=date('Y')+1; $i++)
-                <option value="{{ $i }}" {{ request('tahun')==$i ? 'selected' : '' }}>{{ $i }}</option>
-            @endfor
-        </select>
-        <input type="text" name="unit" placeholder="Filter Unit" class="form-control me-2" value="{{ request('seksi') }}">
-        <button type="submit" class="btn btn-primary">Filter</button>
+    {{-- Filter Form --}}
+    <form method="GET" action="{{ route('dashboard') }}" class="row mb-3">
+        <div class="col-md-3">
+            <input type="number" name="tahun" class="form-control" placeholder="Tahun" value="{{ request('tahun') }}">
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="unit" class="form-control" placeholder="Satuan Kerja" value="{{ request('unit') }}">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
     </form>
 
-    <div class="mb-3">
-        <a href="{{ route('dashboard.export.excel', request()->all()) }}" class="btn btn-success">Export Excel</a>
-        <a href="{{ route('dashboard.export.csv', request()->all()) }}" class="btn btn-secondary">Export CSV</a>
-    </div>
+    {{-- Export Buttons --}}
+    <form method="GET" action="{{ route('dashboard.export.excel') }}" class="d-inline">
+        <input type="hidden" name="tahun" value="{{ request('tahun') }}">
+        <input type="hidden" name="unit" value="{{ request('unit') }}">
+        <button type="submit" class="btn btn-success mb-2">Export Excel</button>
+    </form>
 
+    <form method="GET" action="{{ route('dashboard.export.csv') }}" class="d-inline">
+        <input type="hidden" name="tahun" value="{{ request('tahun') }}">
+        <input type="hidden" name="unit" value="{{ request('unit') }}">
+        <button type="submit" class="btn btn-info mb-2">Export CSV</button>
+    </form>
+
+    {{-- Table --}}
     <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
                 <th>No</th>
                 <th>Satuan Kerja</th>
-                <th>Pembentukan UPG</th>
-                <th>Identifikasi Titik Rawan</th>
-                <th>Pemantauan Titik Rawan</th>
-                <th>Penyebaran Pesan Anti Gratifikasi</th>
-                <th>Pembinaan UPG Tk. I</th>
-                <th>Pembinaan UPG Tk. II</th>
-                <th>Pembinaan UPG Tk. III</th>
+                <th>Pembinaan Mental</th>
                 <th>Sosialisasi Antikorupsi</th>
+                <th>Edukasi Pencegahan</th>
+                <th>Pengendalian Gratifikasi</th>
+                <th>Pemantauan Perilaku dan Gaya Hidup</th>
+                <th>Pemantauan LHK</th>
+                <th>Pelaksanaan Monev ZI</th>
+                <th>Analisis Data Informasi Pegawai</th>
+                <th>Penanganan Hasil Survey</th>
+                <th>Penanganan Pengaduan Masyarakat</th>
+                <th>Simpulan Performa Pencegahan</th>
             </tr>
         </thead>
         <tbody>
-            @forelse($data as $row)
+            @forelse($satker as $row)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $row->seksi }}</td>
-                    <td>{{ $row->pembentukan_upg }}</td>
-                    <td>{{ $row->identifikasi_rawan }}</td>
-                    <td>{{ $row->pemantauan_rawan }}</td>
-                    <td>{{ $row->penyebaran_pesan }}</td>
-                    <td>{{ $row->pembinaan_tk1 }}</td>
-                    <td>{{ $row->pembinaan_tk2 }}</td>
-                    <td>{{ $row->pembinaan_tk3 }}</td>
-                    <td>{{ $row->sosialisasi }}</td>
+                    <td>{{ $row->pembinaan_mental }}</td>
+                    <td>{{ $row->sosialisasi_antikorupsi }}</td>
+                    <td>{{ $row->edukasi_pencegahan }}</td>
+                    <td>{{ $row->pengendalian_gratifikasi }}</td>
+                    <td>{{ $row->pemantauan_perilaku }}</td>
+                    <td>{{ $row->pemantauan_lhk }}</td>
+                    <td>{{ $row->pelaksanaan_monev }}</td>
+                    <td>{{ $row->analisis_data }}</td>
+                    <td>{{ $row->penanganan_survey }}</td>
+                    <td>{{ $row->penanganan_pengaduan }}</td>
+                    <td>{{ $row->simpulan_performa }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="10" class="text-center">Data tidak tersedia</td>
+                    <td colspan="13" class="text-center">Data tidak tersedia</td>
                 </tr>
             @endforelse
         </tbody>
