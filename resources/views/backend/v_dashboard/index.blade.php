@@ -31,7 +31,7 @@
     </form>
 
     {{-- Table --}}
-    <table class="table table-bordered">
+    <table class="table table-bordered mt-3">
         <thead class="table-dark">
             <tr>
                 <th>No</th>
@@ -40,7 +40,7 @@
                 <th>Sosialisasi Antikorupsi</th>
                 <th>Edukasi Pencegahan</th>
                 <th>Pengendalian Gratifikasi</th>
-                <th>Pemantauan Perilaku dan Gaya Hidup</th>
+                <th>Pemantauan Perilaku dan Gaya Hidup Pegawai</th>
                 <th>Pemantauan LHK</th>
                 <th>Pelaksanaan Monev ZI</th>
                 <th>Analisis Data Informasi Pegawai</th>
@@ -50,27 +50,124 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($satker as $row)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $row->seksi }}</td>
-                    <td>{{ $row->pembinaan_mental }}</td>
-                    <td>{{ $row->sosialisasi_antikorupsi }}</td>
-                    <td>{{ $row->edukasi_pencegahan }}</td>
-                    <td>{{ $row->pengendalian_gratifikasi }}</td>
-                    <td>{{ $row->pemantauan_perilaku }}</td>
-                    <td>{{ $row->pemantauan_lhk }}</td>
-                    <td>{{ $row->pelaksanaan_monev }}</td>
-                    <td>{{ $row->analisis_data }}</td>
-                    <td>{{ $row->penanganan_survey }}</td>
-                    <td>{{ $row->penanganan_pengaduan }}</td>
-                    <td>{{ $row->simpulan_performa }}</td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="13" class="text-center">Data tidak tersedia</td>
-                </tr>
-            @endforelse
+            @php
+            $opsi = [
+                4 => 'Sangat Baik (4)',
+                3 => 'Baik (3)',
+                2 => 'Cukup (2)',
+                1 => 'Belum Memadai (1)',
+            ];
+            @endphp
+
+            @foreach($satker as $index => $m)
+            <tr>
+                <td>{{ $index+1 }}</td>
+                <td>{{ $m->satuan_kerja }}</td>
+
+                {{-- dropdown pilihan --}}
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->pembinaan_mental == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->sosialisasi_antikorupsi == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->edukasi_pencegahan == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->pengendalian_gratifikasi == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->pemantauan_perilaku_dan_gaya_hidup == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->pemantauan_lhk == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->pelaksanaan_monev_zi == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->analisis_data_informasi_pegawai == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->penanganan_hasil_survey == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        @foreach($opsi as $key => $val)
+                            <option value="{{ $key }}" {{ $m->penanganan_pengaduan_masyarakat == $key ? 'selected' : '' }}>
+                                {{ $val }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+
+                <td>{{ $m->simpulan_performa_pencegahan }}</td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
