@@ -10,19 +10,21 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class SatkerExport implements FromCollection, WithHeadings
 {
     protected $tahun;
+    protected $bulan;
     protected $unit;
     protected $satkerService;
 
-    public function __construct($tahun = null, $unit = null)
+    public function __construct($tahun = null, $bulan = null, $unit = null)
     {
         $this->tahun = $tahun;
+        $this->bulan = $bulan;
         $this->unit  = $unit;
         $this->satkerService = new SatkerService();
     }
 
     public function collection()
     {
-        return $this->satkerService->getForExport($this->tahun, $this->unit);
+        return $this->satkerService->getForExport($this->tahun, $this->bulan,$this->unit);
     }
 
     public function map($m): array

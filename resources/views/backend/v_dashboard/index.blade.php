@@ -10,7 +10,10 @@
             <input type="number" name="tahun" class="form-control" placeholder="Tahun" value="{{ request('tahun') }}">
         </div>
         <div class="col-md-3">
-            <input type="text" name="unit" class="form-control" placeholder="Satuan Kerja" value="{{ request('unit') }}">
+            <input type="number" name="bulan" class="form-control" placeholder="Bulan" value="{{ request('bulan') }}">
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="unit" class="form-control" placeholder="Satuan Kerja" value="{{ request('nama_satker') }}">
         </div>
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary">Filter</button>
@@ -20,17 +23,18 @@
     {{-- Export Buttons --}}
     <form method="GET" action="{{ route('dashboard.export.excel') }}" class="d-inline">
         <input type="hidden" name="tahun" value="{{ request('tahun') }}">
+        <input type="hidden" name="bulan" value="{{ request('bulan') }}">
         <input type="hidden" name="unit" value="{{ request('unit') }}">
         <button type="submit" class="btn btn-success mb-2">Export Excel</button>
     </form>
 
     <form method="GET" action="{{ route('dashboard.export.csv') }}" class="d-inline">
         <input type="hidden" name="tahun" value="{{ request('tahun') }}">
+        <input type="hidden" name="bulan" value="{{ request('bulan') }}">
         <input type="hidden" name="unit" value="{{ request('unit') }}">
         <button type="submit" class="btn btn-info mb-2">Export CSV</button>
     </form>
 
-    {{-- Table --}}
     <table class="table table-bordered mt-3">
         <thead class="table-dark">
             <tr>
@@ -59,115 +63,118 @@
             ];
             @endphp
 
-            @foreach($satker as $index => $m)
-            <tr>
-                <td>{{ $index+1 }}</td>
-                <td>{{ $m->satuan_kerja }}</td>
+            @forelse($satker as $index => $m)
+                <tr>
+                    <td>{{ $index+1 }}</td>
+                    <td>{{ $m->nama_satker }}</td>
 
-                {{-- dropdown pilihan --}}
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->pembinaan_mental == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
-
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                            @endforeach
+                        </select>
+                    </td>
+                
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->sosialisasi_antikorupsi == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
-
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                            @endforeach
+                        </select>
+                    </td>
+                    
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->edukasi_pencegahan == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
-
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                            @endforeach
+                        </select>
+                    </td>
+                    
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->pengendalian_gratifikasi == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
-
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                            @endforeach
+                        </select>
+                    </td>
+                    
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->pemantauan_perilaku_dan_gaya_hidup == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
-
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                            @endforeach
+                        </select>
+                    </td>
+                    
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->pemantauan_lhk == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
-
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                            @endforeach
+                        </select>
+                    </td>
+                        
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->pelaksanaan_monev_zi == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
-
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                            @endforeach
+                        </select>
+                    </td>
+                    
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->analisis_data_informasi_pegawai == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
-
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                            @endforeach
+                        </select>
+                    </td>
+                    
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->penanganan_hasil_survey == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
-
-                <td>
-                    <select class="form-control">
-                        @foreach($opsi as $key => $val)
+                            @endforeach
+                        </select>
+                    </td>
+                    
+                    <td>
+                        <select class="form-control">
+                            @foreach($opsi as $key => $val)
                             <option value="{{ $key }}" {{ $m->penanganan_pengaduan_masyarakat == $key ? 'selected' : '' }}>
                                 {{ $val }}
                             </option>
-                        @endforeach
-                    </select>
-                </td>
+                            @endforeach
+                        </select>
+                    </td>
 
-                <td>{{ $m->simpulan_performa_pencegahan }}</td>
-            </tr>
-            @endforeach
+                    <td>{{ $m->simpulan_performa_pencegahan }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="14" class="text-center text-muted">Data tidak tersedia</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

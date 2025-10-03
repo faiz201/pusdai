@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\SatkerService;
 use App\Exports\SatkerExport;
-use App\Models\Satker;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
@@ -21,18 +20,19 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $tahun = $request->input('tahun');
+        $bulan = $request->input('bulan');
         $unit  = $request->input('unit');
-        $satker = Satker::all();
 
-        $satker = $this->satkerService->getFiltered($tahun, $unit);
+        $satker = $this->satkerService->getAll();
+        $satker = $this->satkerService->getFiltered($tahun, $bulan, $unit);
 
         return view('backend.v_dashboard.index', compact('satker'));
     }
 
-    public function exportExcel(Request $request)
+     public function exportExcel(Request $request)
     {
         return Excel::download(
-            new SatkerExport($request->tahun, $request->unit),
+            new SatkerExport($request->tahun,$request->bulan,$request->unit),
             'satker.xlsx'
         );
     }
@@ -40,9 +40,10 @@ class DashboardController extends Controller
     public function exportCsv(Request $request)
     {
         return Excel::download(
-            new SatkerExport($request->tahun, $request->unit),
+            new SatkerExport($request->tahun,$request->bulan,$request->unit),
             'satker.csv',
             \Maatwebsite\Excel\Excel::CSV
         );
     }
+
 }
