@@ -11,7 +11,7 @@ class SatkerService
         return Satker::all();
     }
 
-    public function getFiltered($tahun = null, $bulan =null, $unit = null)
+    public function getFiltered($tahun = null, $bulan =null, $satker = null)
     {
         $query = Satker::query();
 
@@ -23,8 +23,8 @@ class SatkerService
             $query->whereYear('created_at', $bulan);
         }
 
-        if ($unit) {
-            $query->where('nama_satker', 'like', "%$unit%");
+        if ($satker) {
+            $query->where('nama satker', 'like', "%$satker%");
         }
 
         return $query->get();
@@ -38,8 +38,8 @@ class SatkerService
     /**
      * Data untuk export Excel/CSV
      */
-    public function getForExport($tahun = null, $bulan = null, $unit = null)
+    public function getForExport($tahun = null, $bulan = null, $satker = null)
     {
-        return $this->getFiltered($tahun, $bulan,$unit);
+        return $this->getFiltered($tahun, $bulan,$satker);
     }
 }

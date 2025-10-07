@@ -10,7 +10,7 @@
             <input type="number" name="tahun" class="form-control" placeholder="Tahun" value="{{ request('tahun') }}">
         </div>
         <div class="col-md-3">
-            <input type="number" name="bulan" class="form-control" placeholder="Bulan" value="{{ request('bulan') }}">
+            <input type="text" name="bulan" class="form-control" placeholder="Bulan" value="{{ request('bulan') }}">
         </div>
         <div class="col-md-3">
             <input type="text" name="unit" class="form-control" placeholder="Satuan Kerja" value="{{ request('nama_satker') }}">
@@ -24,14 +24,14 @@
     <form method="GET" action="{{ route('dashboard.export.excel') }}" class="d-inline">
         <input type="hidden" name="tahun" value="{{ request('tahun') }}">
         <input type="hidden" name="bulan" value="{{ request('bulan') }}">
-        <input type="hidden" name="unit" value="{{ request('unit') }}">
+        <input type="hidden" name="unit" value="{{ request('satker') }}">
         <button type="submit" class="btn btn-success mb-2">Export Excel</button>
     </form>
 
     <form method="GET" action="{{ route('dashboard.export.csv') }}" class="d-inline">
         <input type="hidden" name="tahun" value="{{ request('tahun') }}">
         <input type="hidden" name="bulan" value="{{ request('bulan') }}">
-        <input type="hidden" name="unit" value="{{ request('unit') }}">
+        <input type="hidden" name="unit" value="{{ request('satker') }}">
         <button type="submit" class="btn btn-info mb-2">Export CSV</button>
     </form>
 

@@ -10,10 +10,14 @@ class Satker extends Model
     use HasFactory;
 
     public $timestamps = false; 
-    protected $table = "satker"; 
+    protected $table = "satker";
+    public function getNamaSatkerAttribute()
+    {
+        return $this->attributes['nama satker'];
+    } 
     protected $fillable = [
-        'nama_satker', 
-        'kode_satker',
+        'nama satker', 
+        'kode satker',
         'satuan_kerja',
         'konteks',
         'pembinaan_mental',
