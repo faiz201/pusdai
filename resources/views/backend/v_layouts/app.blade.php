@@ -109,7 +109,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                                 aria-expanded="false">
-                                <i class="mdi mdi-shopping"></i><span class="hide-menu">Meja Saya</span>
+                                <i class="mdi mdi-table"></i><span class="hide-menu">Meja Saya</span>
                             </a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item">
@@ -122,6 +122,11 @@
                                         <i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Input Laporan </span>
                                     </a>
                                 </li>
+                                <li class="sidebar-item">
+                                     <a href="{{ route('pembinaanmental.index') }}" class="sidebar-link">
+                                         <i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Pembinaan Mental </span>
+                                     </a>
+                                </li>  
                             </ul>
                         </li>
                     </ul>

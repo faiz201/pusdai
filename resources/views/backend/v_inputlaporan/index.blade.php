@@ -30,7 +30,7 @@
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $laporan->judul_laporan }}</td>
-                            <td>{{ $laporan->seksi->seksi ?? '_' }}
+                            <td>{{ $laporan->monitoring->seksi ?? '_' }}
                             <td>
                                 <span class="badge {{ $laporan->status == 'selesai' ? 'bg-success' : 'bg-warning' }}">
                                     {{ ucfirst($laporan->status) }}

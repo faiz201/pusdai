@@ -16,5 +16,9 @@ class Monitoring extends Model
         'kegiatan',
         'status',
     ];
+    public function inputlaporan()
+    {
+        return $this->hasMany(InputLaporan::class, 'seksi');
+    }
     protected $guarded = ['id']; 
 }

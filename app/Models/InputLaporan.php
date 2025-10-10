@@ -12,17 +12,18 @@ class InputLaporan extends Model
     protected $table = 'input_laporan';
 
     protected $fillable = [
-        'seksi',
+        'monitoring_id',
         'user_id',
         'judul_laporan',
         'detail',
         'status',
+        'foto',
     ];
 
     /** Relasi ke Monitoring */
     public function monitoring()
     {
-        return $this->belongsTo(Monitoring::class);
+        return $this->belongsTo(Monitoring::class, 'monitoring_id');
     }
 
     /** Relasi ke User */

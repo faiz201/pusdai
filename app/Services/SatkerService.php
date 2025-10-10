@@ -20,7 +20,7 @@ class SatkerService
         }
 
         if ($bulan) {
-            $query->whereYear('created_at', $bulan);
+            $query->whereMonth('created_at', $bulan);
         }
 
         if ($satker) {
@@ -29,7 +29,6 @@ class SatkerService
 
         return $query->get();
     }
-
     public function getById($id)
     {
         return Satker::findOrFail($id);

@@ -9,7 +9,7 @@ class InputLaporanSeeder extends Seeder
 {
     public function run(): void
     {
-        // Buat 148 data dengan factory
-        InputLaporan::factory(147)->create();
+        // Buat 10 data dengan factory
+        InputLaporan::factory(9)->create();
     }
 }

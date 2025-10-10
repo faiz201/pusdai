@@ -18,7 +18,7 @@
                     <th>Seksi</th>
                     <th>Kegiatan</th>
                     <th>Status</th>
-                    <th>Aksi</th>
+                    <th>Total Skor</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,14 +32,8 @@
                             {{ ucfirst($item->status) }}
                         </span>
                     </td>
-                    <td>
-                        <a href="{{ route('backend.monitoring.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('backend.monitoring.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-sm">Hapus</button>
-                        </form>
-                    </td>
+                    <td>{{ $item->total_skor }}</td>
+                    <td>{{ $item->kategori_total }}</td>
                 </tr>
                 @empty
                 <tr>

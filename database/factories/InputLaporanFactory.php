@@ -20,7 +20,7 @@ class InputLaporanFactory extends Factory
         return [
             'seksi' => $monitoring->id,
             'user_id' => $user->id,
-            'judul_laporan' => 'Laporan Uji Coba #' . $this->faker->unique()->numberBetween(1, 1000),
+            'judul_laporan' => 'Laporan Uji Coba' . $this->faker->unique()->numberBetween(1, 1000),
             'detail' => $this->faker->sentence(10),
             'status' => $this->faker->randomElement(['draft', 'submitted',]),
         ];
