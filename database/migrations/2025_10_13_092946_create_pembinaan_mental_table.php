@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('pembinaan_mental', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('nama satker')->constrained('satker')->onDelete('cascade');
             $table->string('periode');
-            $table->integer('indeks_pelaksanaan_dalam_setahun')->default(0);
-            $table->integer('indeks_peserta_kegiatan')->default(0);
-            $table->integer('output_project_learning')->default(0);
+            $table->unsignedBigInteger('satker_id');
+            $table->integer('indeks_pelaksanaan_dalam_setahun');
+            $table->integer('indeks_peserta_kegiatan');
+            $table->integer('output_project_learning');
             $table->integer('indeks_total')->default(0);
             $table->string('kesimpulan')->nullable();
             $table->timestamps();

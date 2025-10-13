@@ -66,7 +66,6 @@
                 <th>Seksi</th>
                 <th>Status</th>
                 <th>Tanggal</th>
-                <th>Foto</th>
             </tr>
         </thead>
         <tbody>
@@ -77,13 +76,6 @@
                     <td>{{ $item->seksi->seksi ?? '-' }}</td>
                     <td class="text-center">{{ ucfirst($item->status) }}</td>
                     <td class="text-center">{{ $item->updated_at->format('d-m-Y') }}</td>
-                    <td class="foto">
-                        @if($item->foto)
-                            <img src="{{ public_path('storage/'.$item->foto) }}" alt="Foto">
-                        @else
-                            -
-                        @endif
-                    </td>
                 </tr>
             @empty
                 <tr>

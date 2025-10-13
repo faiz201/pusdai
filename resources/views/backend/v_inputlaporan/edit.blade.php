@@ -44,16 +44,6 @@
                 @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
-            <div class="form-group mb-3">
-                <label for="foto">Foto (jpeg, jpg, png, gif | max 1MB)</label><br>
-                @if($edit->foto)
-                    <img src="{{ asset('storage/'.$edit->foto) }}" alt="Foto" class="mb-2" width="200"><br>
-                @endif
-                <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror">
-                @error('foto')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                <small class="text-muted">Kosongkan jika tidak ingin mengubah foto.</small>
-            </div>
-
             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Perbarui</button>
             <a href="{{ route('backend.inputlaporan.index') }}" class="btn btn-secondary">Kembali</a>
         </form>

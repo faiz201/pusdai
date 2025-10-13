@@ -12,8 +12,8 @@ class PembinaanMental extends Model
     protected $table = 'pembinaan_mental'; 
 
     protected $fillable = [
-        'nama satker',
         'periode',
+        'satker_id',
         'indeks_pelaksanaan_dalam_setahun',
         'indeks_peserta_kegiatan',
         'output_project_learning',
@@ -31,14 +31,20 @@ class PembinaanMental extends Model
     public function getKesimpulanAttribute()
     {
         $total = $this->indeks_total;
-        
-        if ($total < 3) return 'Belum Memadai';
-        if ($total <=3) return 'Kurang';
-        if ($total <= 6) return 'Baik';
-        if ($total <= 7) return 'Sangat Baik';
+
+        if ($total < 3) {
+            return 'Belum Memadai';
+        } elseif ($total < 5) {
+            return 'Kurang';
+        } elseif ($total < 7) {
+            return 'Baik';
+        } else {
+            return 'Sangat Baik';
+        }
     }
+
     public function satker()
     {
-        return $this->belongsTo(Satker::class, 'nama satker');
+        return $this->belongsTo(Satker::class, 'satker_id');
     }
 }

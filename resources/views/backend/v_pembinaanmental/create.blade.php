@@ -21,8 +21,8 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="satker_id">Satker</label>
-                <select name="satker_id" id="satker_id" class="form-control" required>
+                <label for="nama_satker">Satker</label>
+                <select name="satker_id" id="nama_satker" class="form-control" required>
                     <option value="">-- Pilih Satker --</option>
                     @foreach($satker as $index => $m)
                         <option value="{{ $m->id }}"

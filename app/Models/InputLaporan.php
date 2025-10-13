@@ -17,7 +17,6 @@ class InputLaporan extends Model
         'judul_laporan',
         'detail',
         'status',
-        'foto',
     ];
 
     /** Relasi ke Monitoring */
@@ -30,11 +29,5 @@ class InputLaporan extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    /** Relasi ke Foto Input Laporan */
-    public function fotoInputLaporan()
-    {
-        return $this->hasMany(FotoInputLaporan::class);
     }
 }

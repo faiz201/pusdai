@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <th>Seksi</th>
-                <td>{{ $show->seksi->seksi ?? '-' }}</td>
+                <td>{{ $show->seksi->monitoring ?? '-' }}</td>
             </tr>
             <tr>
                 <th>Detail</th>
@@ -24,18 +24,8 @@
                 <td>{{ ucfirst($show->status) }}</td>
             </tr>
             <tr>
-                <th>Foto</th>
-                <td>
-                    @if($show->foto)
-                        <img src="{{ asset('storage/'.$show->foto) }}" alt="Foto Laporan" width="300">
-                    @else
-                        <span class="text-muted">Tidak ada foto</span>
-                    @endif
-                </td>
-            </tr>
-            <tr>
                 <th>Dibuat Oleh</th>
-                <td>{{ $show->user->name ?? 'User tidak ditemukan' }}</td>
+                <td>{{ $show->user->name ?? '_' }}</td>
             </tr>
             <tr>
                 <th>Tanggal</th>

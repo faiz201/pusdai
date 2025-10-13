@@ -8,12 +8,19 @@ use App\Models\Satker;
 
 class PembinaanMentalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = PembinaanMental::orderBy('id', 'asc')->get();
-        $data = PembinaanMental::with('satker')->get();
+        $tahun = $request->input('tahun');
+        $periode = $request->input('periode');
+        $satker = $request->input('satker');
 
-        // Untuk grafik
+        $data = PembinaanMental::with('satker')
+            ->when($tahun, fn($q) => $q->whereYear('created_at', $tahun))
+            ->when($periode, fn($q) => $q->where('periode', $periode))
+            ->when($satker, fn($q) => $q->whereHas('satker', fn($sq) => $sq->where('nama_satker', 'like', "%$satker%")))
+            ->orderBy('id', 'asc')
+            ->get();
+
         $labels = $data->pluck('periode');
         $totals = $data->pluck('indeks_total');
 
@@ -22,69 +29,88 @@ class PembinaanMentalController extends Controller
 
     public function create()
     {
-        $satker  = Satker::all();
+        $satker = Satker::all();
         return view('backend.v_pembinaanmental.create', compact('satker'));
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama satker' => 'required|exists:nama satker',
+        $request->validate([
             'periode' => 'required|string',
-            'indeks_pelaksanaan_dalam_setahun' => 'required|integer',
-            'indeks_peserta_kegiatan' => 'required|integer',
-            'output_project_learning' => 'required|integer',
+            'satker_id' => 'required|exists:satker,id',
+            'indeks_pelaksanaan_dalam_setahun' => 'required|integer|min:0',
+            'indeks_peserta_kegiatan' => 'required|integer|min:0',
+            'output_project_learning' => 'required|integer|min:0',
         ]);
 
-        $validated['indeks_total'] =
-            $validated['indeks_pelaksanaan_dalam_setahun'] +
-            $validated['indeks_peserta_kegiatan'] +
-            $validated['output_project_learning'];
+        $indeks_total = $request->indeks_pelaksanaan_dalam_setahun
+            + $request->indeks_peserta_kegiatan
+            + $request->output_project_learning;
 
-        $validated['kesimpulan'] =
-            $validated['indeks_total'] >= 7 ? 'Sangat Baik' : 'Baik';
+        $kesimpulan = match (true) {
+            $indeks_total < 3 => 'Belum Memadai',
+            $indeks_total < 5 => 'Kurang',
+            $indeks_total < 7 => 'Baik',
+            default => 'Sangat Baik',
+        };
 
-        PembinaanMental::create($validated);
+        PembinaanMental::create([
+            'periode' => $request->periode,
+            'satker_id' => $request->satker_id,
+            'indeks_pelaksanaan_dalam_setahun' => $request->indeks_pelaksanaan_dalam_setahun,
+            'indeks_peserta_kegiatan' => $request->indeks_peserta_kegiatan,
+            'output_project_learning' => $request->output_project_learning,
+            'indeks_total' => $indeks_total,
+            'kesimpulan' => $kesimpulan,
+        ]);
 
-        return redirect()->route('pembinaanmental.index')
-            ->with('success', 'Data berhasil ditambahkan!');
+        return redirect()->route('pembinaanmental.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function edit($id)
     {
         $data = PembinaanMental::findOrFail($id);
         $satker = Satker::all();
-        return view('backend.v_pembinaanmental.edit', compact('data','satker'));
+        return view('backend.v_pembinaanmental.edit', compact('data', 'satker'));
     }
 
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'nama satker' => 'required|exists:nama satker',
+        $request->validate([
             'periode' => 'required|string',
-            'indeks_pelaksanaan' => 'required|integer',
-            'indeks_peserta' => 'required|integer',
-            'output_project_learning' => 'required|integer',
+            'satker_id' => 'required|exists:satker,id',
+            'indeks_pelaksanaan_dalam_setahun' => 'required|integer|min:0',
+            'indeks_peserta_kegiatan' => 'required|integer|min:0',
+            'output_project_learning' => 'required|integer|min:0',
         ]);
 
-        $validated['indeks_total'] =
-            $validated['indeks_pelaksanaan'] +
-            $validated['indeks_peserta'] +
-            $validated['output_project_learning'];
+        $indeks_total = $request->indeks_pelaksanaan_dalam_setahun
+            + $request->indeks_peserta_kegiatan
+            + $request->output_project_learning;
 
-        $validated['kesimpulan'] =
-            $validated['indeks_total'] >= 7 ? 'Sangat Baik' : 'Baik';
+        $kesimpulan = match (true) {
+            $indeks_total < 3 => 'Belum Memadai',
+            $indeks_total < 5 => 'Kurang',
+            $indeks_total < 7 => 'Baik',
+            default => 'Sangat Baik',
+        };
 
-        PembinaanMental::findOrFail($id)->update($validated);
+        PembinaanMental::findOrFail($id)->update([
+            'periode' => $request->periode,
+            'satker_id' => $request->satker_id,
+            'indeks_pelaksanaan_dalam_setahun' => $request->indeks_pelaksanaan_dalam_setahun,
+            'indeks_peserta_kegiatan' => $request->indeks_peserta_kegiatan,
+            'output_project_learning' => $request->output_project_learning,
+            'indeks_total' => $indeks_total,
+            'kesimpulan' => $kesimpulan,
+        ]);
 
-        return redirect()->route('pembinaanmental.index')
-            ->with('success', 'Data berhasil diperbarui!');
+        return redirect()->route('pembinaanmental.index')->with('success', 'Data berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
         PembinaanMental::findOrFail($id)->delete();
-        return redirect()->route('pembinaanmental.index')
-            ->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('pembinaanmental.index')->with('success', 'Data berhasil dihapus!');
     }
 }

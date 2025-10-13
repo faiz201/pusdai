@@ -50,18 +50,6 @@
                 @enderror
             </div>
 
-            <!-- Foto -->
-            <div class="form-group mb-3">
-                <label for="foto">Foto</label>
-                <input type="file" 
-                       name="foto" 
-                       id="foto" 
-                       class="form-control @error('foto') is-invalid @enderror">
-                @error('foto')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-
             <!-- Tombol -->
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-save"></i> Simpan

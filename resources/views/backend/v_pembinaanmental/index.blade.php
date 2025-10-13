@@ -36,7 +36,7 @@
                     <tbody>
                         @foreach ($data as $d)
                             <tr>
-                                <td>{{ $d->satker }}
+                                <td>{{ $d->satker->nama_satker ?? '-' }}</td>
                                 <td>{{ $d->periode }}</td>
                                 <td>{{ $d->indeks_pelaksanaan_dalam_setahun }}</td>
                                 <td>{{ $d->indeks_peserta_kegiatan }}</td>

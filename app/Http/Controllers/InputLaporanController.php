@@ -40,17 +40,9 @@ class InputLaporanController extends Controller
             'judul_laporan' => 'required|max:255|unique:input_laporan',
             'detail' => 'required',
             'status' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:1024',
-        ], [
-            'foto.image' => 'Gunakan format gambar jpeg, jpg, png, atau gif.',
-            'foto.max' => 'Ukuran maksimum gambar 1024 KB.'
         ]);
 
         $validatedData['user_id'] = auth()->id();
-
-        if ($request->file('foto')) {
-            $validatedData['foto'] = $request->file('foto')->store('img-laporan', 'public');
-        }
 
         InputLaporan::create($validatedData);
         return redirect()->route('backend.inputlaporan.index')->with('success', 'Data berhasil tersimpan');
@@ -92,17 +84,9 @@ class InputLaporanController extends Controller
             'judul_laporan' => 'required|max:255',
             'detail' => 'required',
             'status' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:1024',
         ]);
 
         $validatedData['user_id'] = auth()->id();
-
-        if ($request->file('foto')) {
-            if ($laporan->foto && file_exists(storage_path('app/public/' . $laporan->foto))) {
-                unlink(storage_path('app/public/' . $laporan->foto));
-            }
-            $validatedData['foto'] = $request->file('foto')->store('img-laporan', 'public');
-        }
 
         $laporan->update($validatedData);
 
@@ -113,10 +97,6 @@ class InputLaporanController extends Controller
     public function destroy($id)
     {
         $laporan = InputLaporan::findOrFail($id);
-
-        if ($laporan->foto && file_exists(storage_path('app/public/' . $laporan->foto))) {
-            unlink(storage_path('app/public/' . $laporan->foto));
-        }
 
         $laporan->delete();
         return redirect()->route('backend.inputlaporan.index')->with('success', 'Data berhasil dihapus');

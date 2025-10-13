@@ -36,13 +36,6 @@
                                     {{ ucfirst($laporan->status) }}
                                 </span>
                             </td>
-                            <td>
-                                @if($laporan->foto)
-                                    <img src="{{ asset('storage/'.$laporan->foto) }}" alt="Foto" width="80" class="img-thumbnail">
-                                @else
-                                    <span class="text-muted">-</span>
-                                @endif
-                            </td>
                             <td>{{ $laporan->updated_at->format('d-m-Y H:i') }}</td>
                             <td>
                                 <a href="{{ route('backend.inputlaporan.show', $laporan->id) }}" class="btn btn-info btn-sm">
