@@ -112,21 +112,35 @@
                                 <i class="mdi mdi-table"></i><span class="hide-menu">Meja Saya</span>
                             </a>
                             <ul aria-expanded="false" class="collapse first-level">
+
                                 <li class="sidebar-item">
                                     <a href="{{ route('backend.monitoring.index') }}" class="sidebar-link">
                                         <i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Monitoring </span>
                                     </a>
                                 </li>
+
                                 <li class="sidebar-item">
-                                    <a href="{{ route('backend.inputlaporan.index') }}" class="sidebar-link">
+                                    <a class="has-arrow sidebar-link" href="javascript:void(0)" aria-expanded="false">
                                         <i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Input Laporan </span>
                                     </a>
+                                    <ul aria-expanded="false" class="collapse second-level">
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('backend.inputlaporan.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Daftar Laporan </span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('pembinaanmental.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Pembinaan Mental </span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('sosialisasiantikorupsi.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Sosialisasi Antikorupsi </span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li class="sidebar-item">
-                                     <a href="{{ route('pembinaanmental.index') }}" class="sidebar-link">
-                                         <i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Pembinaan Mental </span>
-                                     </a>
-                                </li>  
                             </ul>
                         </li>
                     </ul>

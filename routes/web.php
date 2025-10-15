@@ -8,6 +8,7 @@ use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\InputLaporanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PembinaanMentalController;
+use App\Http\Controllers\SosialisasiAntikorupsiController;
 
 
 /*
@@ -77,4 +78,13 @@ Route::prefix('pembinaanmental')->group(function () {
     Route::get('/{id}/edit', [PembinaanMentalController::class, 'edit'])->name('pembinaanmental.edit');
     Route::put('/{id}', [PembinaanMentalController::class, 'update'])->name('pembinaanmental.update');
     Route::delete('/{id}', [PembinaanMentalController::class, 'destroy'])->name('pembinaanmental.destroy');
+});
+
+Route::prefix('sosialisasiantikorupsi')->group(function () {
+    Route::get('/', [SosialisasiAntikorupsiController::class, 'index'])->name('sosialisasiantikorupsi.index');
+    Route::get('/create', [SosialisasiAntikorupsiController::class, 'create'])->name('sosialisasiantikorupsi.create');
+    Route::post('/', [SosialisasiAntikorupsiController::class, 'store'])->name('sosialisasiantikorupsi.store');
+    Route::get('/{id}/edit', [SosialisasiAntikorupsiController::class, 'update'])->name('sosialisasiantikorupsi.edit');
+    Route::put('/{id}', [SosialisasiAntikorupsiController::class, 'update'])->name('sosialisasiantikorupsi.update');
+    Route::delete('/{id}', [SosialisasiAntikorupsiController::class, 'destroy'])->name('sosialisasiantikorupsi.destroy');
 });

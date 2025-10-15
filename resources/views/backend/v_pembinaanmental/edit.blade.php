@@ -12,20 +12,20 @@
             
             <div class="form-group">
                 <label>Periode</label>
-                <select name="triwulan" class="form-control" required>
-                    <option value="Triwulan I" {{ $data->triwulan == 'Triwulan I' ? 'selected' : '' }}>Triwulan I</option>
-                    <option value="Triwulan II" {{ $data->triwulan == 'Triwulan II' ? 'selected' : '' }}>Triwulan II</option>
-                    <option value="Triwulan III" {{ $data->triwulan == 'Triwulan III' ? 'selected' : '' }}>Triwulan III</option>
-                    <option value="Triwulan IV" {{ $data->triwulan == 'Triwulan IV' ? 'selected' : '' }}>Triwulan IV</option>
+                <select name="periode" class="form-control" required>
+                    <option value="Triwulan I" {{ $data->periode == 'Triwulan I' ? 'selected' : '' }}>Triwulan I</option>
+                    <option value="Triwulan II" {{ $data->periode == 'Triwulan II' ? 'selected' : '' }}>Triwulan II</option>
+                    <option value="Triwulan III" {{ $data->periode == 'Triwulan III' ? 'selected' : '' }}>Triwulan III</option>
+                    <option value="Triwulan IV" {{ $data->periode == 'Triwulan IV' ? 'selected' : '' }}>Triwulan IV</option>
                 </select>
             </div>
 
             <div class="form-group mb-3">
-                <label for="satker_id">Satker</label>
-                <select name="nama satker" id="nama satker" class="form-control" required>
+                <label for="nama_satker">Satker</label>
+                <select name="satker_id" id="nama_satker" class="form-control" required>
                     <option value="">-- Pilih Satker --</option>
-                    @foreach($satker as $index => $m)
-                        <option value="{{ $m->id }}" {{ $pembinaanMental->nama_satker == $satker->id ? 'selected' : '' }}>
+                    @foreach($satker as $m)
+                        <option value="{{ $m->id }}" {{ $data->satker_id == $m->id ? 'selected' : '' }}>
                             {{ $m->nama_satker }}
                         </option>
                     @endforeach

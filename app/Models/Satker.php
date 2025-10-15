@@ -13,11 +13,11 @@ class Satker extends Model
     protected $table = "satker";
     public function getNamaSatkerAttribute()
     {
-        return $this->attributes['nama satker'];
+        return $this->attributes['nama_satker'];
     } 
     protected $fillable = [
-        'nama satker', 
-        'kode satker',
+        'nama_satker', 
+        'kode_satker',
         'satuan_kerja',
         'konteks',
         'pembinaan_mental',

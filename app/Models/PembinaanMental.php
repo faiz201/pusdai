@@ -21,26 +21,23 @@ class PembinaanMental extends Model
         'kesimpulan'
     ];
 
-    protected $appends = ['indeks_total', 'kesimpulan'];
-    
-    public function getIndeksTotalAttribute()
+    protected static function booted()
     {
-        return $this->pelaksanaan + $this->peserta + $this->output;
-    }
-    
-    public function getKesimpulanAttribute()
-    {
-        $total = $this->indeks_total;
+        static::saving(function ($model) {
+            $pelaksanaan = $model->indeks_pelaksanaan_dalam_setahun ?? 0;
+            $peserta = $model->indeks_peserta_kegiatan ?? 0;
+            $output = $model->output_project_learning ?? 0;
 
-        if ($total < 3) {
-            return 'Belum Memadai';
-        } elseif ($total < 5) {
-            return 'Kurang';
-        } elseif ($total < 7) {
-            return 'Baik';
-        } else {
-            return 'Sangat Baik';
-        }
+            $total = $pelaksanaan + $peserta + $output;
+
+            $model->indeks_total = $total;
+            $model->kesimpulan = match (true) {
+                $total < 3 => 'Belum Memadai',
+                $total < 5 => 'Kurang',
+                $total < 7 => 'Baik',
+                default => 'Sangat Baik',
+            };
+        });
     }
 
     public function satker()

@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pembinaan_mental', function (Blueprint $table) {
+        Schema::create('sosialisasi_antikorupsi', function (Blueprint $table) {
             $table->id();
             $table->string('periode');
             $table->unsignedBigInteger('satker_id');
-            $table->integer('indeks_pelaksanaan_dalam_setahun');
-            $table->integer('indeks_peserta_kegiatan');
-            $table->integer('output_project_learning');
-            $table->integer('indeks_total');
-            $table->string('kesimpulan');
+            $table->string('jenis_kegiatan');
+            $table->string('tema');
+            $table->string('waktu');
+            $table->string('tempat');
+            $table->string('narasumber');
+            $table->integer('jumlah_peserta');
+            $table->string('sasaran');
+            $table->string('indeks_efektivitas');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pembinaan_mental');
+        Schema::dropIfExists('sosialisasi_antikorupsi');
     }
 };
