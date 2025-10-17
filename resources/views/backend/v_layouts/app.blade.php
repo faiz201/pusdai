@@ -139,6 +139,26 @@
                                                 <i class="mdi mdi-minus"></i><span class="hide-menu"> Sosialisasi Antikorupsi </span>
                                             </a>
                                         </li>
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('edukasi.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Edukasi Pencegahan </span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('ppg.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Laporan Gratifikasi </span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('pgh.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Pemantauan Perilaku </span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('pemantauan.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Pemantauan Zona Integritas </span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>

@@ -1,13 +1,13 @@
 @extends('backend.v_layouts.app')
 
-@section('content_title', 'Edit Sosialisasi Antikorupsi')
+@section('content_title', 'Edit Edukasi Pencegahan Pelaggaran Pegawai')
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4>Edit Data Sosialisasi Antikorupsi</h4>
+        <h4>Edit Data Edukasi Pencegahan Pelanggaran Pegawai</h4>
     </div>
     <div class="card-body">
-        <form action="{{ route('sosialisasiantikorupsi.update', $data->id) }}" method="POST">
+        <form action="{{ route('edukasi.update', $data->id) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -16,8 +16,7 @@
                 <select name="satker_id" id="nama_satker" class="form-control" required>
                     <option value="">-- Pilih Satker --</option>
                     @foreach($satker as $m)
-                        <option value="{{ $m->id }}" 
-                            {{ (old('satker_id', $data->satker_id) == $m->id) ? 'selected' : '' }}>
+                        <option value="{{ $m->id }}" {{ old('satker_id') == $m->id ? 'selected' : '' }}>
                             {{ $m->nama_satker }}
                         </option>
                     @endforeach
@@ -86,7 +85,7 @@
             </div>
 
             <button class="btn btn-success"><i class="fas fa-save"></i> Update</button>
-            <a href="{{ route('sosialisasiantikorupsi.index') }}" class="btn btn-secondary">
+            <a href="{{ route('edukasi.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
         </form>

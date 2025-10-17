@@ -9,7 +9,10 @@ use App\Http\Controllers\InputLaporanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PembinaanMentalController;
 use App\Http\Controllers\SosialisasiAntikorupsiController;
-
+use App\Http\Controllers\EdukasiPencegahanPelanggaranPegawaiController;
+use App\Http\Controllers\PenangananLaporanGratifikasiController;
+use App\Http\Controllers\PGHController;
+use App\Http\Controllers\PemantauanZIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +71,9 @@ Route::post('backend/laporan/cetakinputlaporan', [InputLaporanController::class,
     
 // Dashboard
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/satker/{id}', [App\Http\Controllers\DashboardController::class, 'show'])
+    ->name('dashboard.satker.show');
+Route::get('/dashboard/filter', [DashboardController::class, 'filter'])->name('dashboard.filter');
 Route::get('/dashboard/export-excel', [App\Http\Controllers\DashboardController::class, 'exportExcel'])->name('dashboard.export.excel');
 Route::get('/dashboard/export-csv', [App\Http\Controllers\DashboardController::class, 'exportCsv'])->name('dashboard.export.csv');
 
@@ -84,7 +90,24 @@ Route::prefix('sosialisasiantikorupsi')->group(function () {
     Route::get('/', [SosialisasiAntikorupsiController::class, 'index'])->name('sosialisasiantikorupsi.index');
     Route::get('/create', [SosialisasiAntikorupsiController::class, 'create'])->name('sosialisasiantikorupsi.create');
     Route::post('/', [SosialisasiAntikorupsiController::class, 'store'])->name('sosialisasiantikorupsi.store');
-    Route::get('/{id}/edit', [SosialisasiAntikorupsiController::class, 'update'])->name('sosialisasiantikorupsi.edit');
+    Route::get('/{id}/edit', [SosialisasiAntikorupsiController::class, 'edit'])->name('sosialisasiantikorupsi.edit');
     Route::put('/{id}', [SosialisasiAntikorupsiController::class, 'update'])->name('sosialisasiantikorupsi.update');
     Route::delete('/{id}', [SosialisasiAntikorupsiController::class, 'destroy'])->name('sosialisasiantikorupsi.destroy');
 });
+
+Route::prefix('edukasi')->group(function () {
+    Route::get('/', [EdukasiPencegahanPelanggaranPegawaiController::class, 'index'])->name('edukasi.index');
+    Route::get('/create', [EdukasiPencegahanPelanggaranPegawaiController::class, 'create'])->name('edukasi.create');
+    Route::post('/', [EdukasiPencegahanPelanggaranPegawaiController::class, 'store'])->name('edukasi.store');
+    Route::get('/{id}/edit', [EdukasiPencegahanPelanggaranPegawaiController::class, 'edit'])->name('edukasi.edit');
+    Route::put('/{id}', [EdukasiPencegahanPelanggaranPegawaiController::class, 'update'])->name('edukasi.update');
+    Route::delete('/{id}', [EdukasiPencegahanPelanggaranPegawaiController::class, 'destroy'])->name('edukasi.destroy');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('ppg', PenangananLaporanGratifikasiController::class);
+});
+
+Route::resource('pgh', PGHController::class);
+
+Route::resource('pemantauan', PemantauanZIController::class);
