@@ -100,12 +100,14 @@
                                 <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard </span>
                             </a>
                         </li>
+                        @if(auth()->check() && auth()->user()->role === '0')
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('backend.user.index') }}"
                                 aria-expanded="false">
-                                <i class="mdi mdi-account"></i><span class="hide-menu">User </span>
+                                <i class="mdi mdi-user"></i><span class="hide-menu">User </span>
                             </a>
                         </li>
+                        @endif
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                                 aria-expanded="false">
@@ -124,11 +126,6 @@
                                         <i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Input Laporan </span>
                                     </a>
                                     <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item">
-                                            <a href="{{ route('backend.inputlaporan.index') }}" class="sidebar-link">
-                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Daftar Laporan </span>
-                                            </a>
-                                        </li>
                                         <li class="sidebar-item">
                                             <a href="{{ route('pembinaanmental.index') }}" class="sidebar-link">
                                                 <i class="mdi mdi-minus"></i><span class="hide-menu"> Pembinaan Mental </span>

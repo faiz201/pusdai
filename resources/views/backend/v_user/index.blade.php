@@ -34,7 +34,7 @@ Tambah</button>
                                 <td> 
                                     @if ($row->role == 1)
                                     <span class="badge badge-success"></i> 
-                                        Super Admin</span> 
+                                        User</span> 
                                     @elseif($row->role == 0) 
                                     <span class="badge badge-primary"></i> 
                                         Admin</span> 

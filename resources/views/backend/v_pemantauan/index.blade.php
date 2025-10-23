@@ -9,12 +9,14 @@
 
     {{-- Filter Tahun/Bulan --}}
     <form method="GET" action="{{ route('pemantauan.index') }}" class="d-flex mb-3">
-        <select name="tahun" class="form-select me-2" style="width: 200px;">
-            <option value="">-- Pilih Tahun --</option>
-            @foreach($tahunList as $t)
-                <option value="{{ $t }}" {{ request('tahun') == $t ? 'selected' : '' }}>{{ $t }}</option>
-            @endforeach
-        </select>
+        <input type="number"
+               name="tahun"
+               class="form-control me-2"
+               style="width: 150px;"
+               placeholder="Masukkan Tahun"
+               value="{{ request('tahun') ?? date('Y') }}"
+               min="2000"
+               max="{{ date('Y') + 1 }}">
 
         <select name="bulan" class="form-select me-2" style="width: 200px;">
             <option value="">-- Pilih Bulan --</option>
@@ -46,7 +48,7 @@
             @forelse($data as $i => $row)
                 <tr>
                     <td>{{ $i+1 }}</td>
-                    <td>{{ $row->satker->nama ?? '-' }}</td>
+                    <td>{{ $row->satker->nama_satker ?? '-' }}</td>
                     <td>{{ $row->tahun_predikat }}</td>
                     <td>{{ $row->pemeliharaan_wbk ? 'Ya' : 'Tidak' }}</td>
                     <td>{{ $row->pencanangan_wbbm ? 'Ya' : 'Tidak' }}</td>

@@ -46,7 +46,7 @@ is-invalid @enderror">
                                             Pilih Hak Akses -</option> 
                                         <option value="1" {{ old('role', $edit->role) == 
 '1' ? 'selected' : '' }}> 
-                                            Super Admin</option> 
+                                            User</option> 
                                         <option value="0" {{ old('role', $edit->role) == 
 '0' ? 'selected' : '' }}> 
                                             Admin</option> 

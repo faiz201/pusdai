@@ -8,6 +8,7 @@ use App\Models\SosialisasiAntikorupsi;
 use App\Models\EdukasiPencegahanPelanggaranPegawai;
 use App\Models\PenangananLaporanGratifikasi;
 use App\Models\PGH;
+use App\Models\Pemantauan;
 
 class SatkerService
 {
@@ -43,6 +44,7 @@ class SatkerService
                 'edukasi_pencegahan_pelanggaran_pegawai' => EdukasiPencegahanPelanggaranPegawai::class,
                 'penanganan_laporan_gratifikasi' => PenangananLaporanGratifikasi::class,
                 'pemantauan_perilaku_gaya_hidup_pegawai' => PGH::class,
+                'pelaksanaan_monev_zi' => Pemantauan::class,
             ];
 
             $hasil = [];
