@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'nama' => 'Kepala Subdirektorat', 
             'email' => 'rubiyantara@kemenkeu.go.id', 
             'role' => '1', 
-            'status' => 1,
+            'status' => '1',
             'password' => bcrypt('Subdit123'), 
         ]);
         User::create([
