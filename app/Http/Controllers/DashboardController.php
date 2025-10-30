@@ -69,7 +69,6 @@ class DashboardController extends Controller
             ];
         });
 
-
         return view('backend.v_dashboard.index', compact(
             'satker', 'tahun', 'bulan', 'unit',
             'top5', 'bottom5', 'distribusi', 'quadrantData'
