@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('satker', function (Blueprint $table) {
             $table->id();
             $table->text('nama_satker');
-            $table->integer('kode_satker');
+            $table->integer('kode_satker')->nullable();
+            $table->decimal('total_nilai', 8, 2)->default(0);
             $table->timestamps();
         });
     }

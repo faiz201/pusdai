@@ -32,49 +32,34 @@
         </form>
     </div>
 
-    <!-- 📈 Chart Section -->
+    <!-- 📊 Grafik Top 5 dan Attensi 5 -->
     <div class="row g-4 mb-4">
-        <!-- Pie Chart -->
-        <div class="col-12">
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-primary text-white fw-bold">
-                    Distribusi Kegiatan Pencegahan
-                </div>
-                <div class="card-body">
-                    <canvas id="chartDistribusi" height="100"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Top 10 / Bottom 10 -->
         <div class="col-md-6">
             <div class="card shadow-sm border-0">
-                <div class="card-header bg-success text-white fw-bold">
-                    10 Satker Terbaik
-                </div>
-                <div class="card-body">
-                    <canvas id="chartTop10" height="200"></canvas>
-                </div>
+                <div class="card-header bg-success text-white fw-bold">5 Satker Terbaik</div>
+                <div class="card-body"><canvas id="chartTop5" height="250"></canvas></div>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="card shadow-sm border-0">
-                <div class="card-header bg-danger text-white fw-bold">
-                    10 Satker Attensi
-                </div>
-                <div class="card-body">
-                    <canvas id="chartBottom10" height="200"></canvas>
-                </div>
+                <div class="card-header bg-danger text-white fw-bold">5 Satker Attensi</div>
+                <div class="card-body"><canvas id="chartBottom5" height="250"></canvas></div>
             </div>
         </div>
     </div>
 
-    <!-- 🧾 Table Data -->
-    <div class="card shadow-sm border-0">
-        <div class="card-header bg-dark text-white fw-bold">
-            Rekapitulasi Performa Pencegahan
+    <!-- 🧭 Grafik Kuadran Performa Satker -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-primary text-white fw-bold">Kuadran Performa Satker</div>
+        <div class="card-body">
+            <canvas id="chartQuadrant" height="400"></canvas>
         </div>
+    </div>
+
+    <!-- 🧾 Tabel Data -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white fw-bold">Rekapitulasi Performa Pencegahan</div>
         <div class="card-body table-responsive">
             <table class="table table-bordered table-hover align-middle">
                 <thead class="table-primary">
@@ -117,88 +102,108 @@
     </div>
 </div>
 
-<!-- Chart.js -->
+<!-- Chart.js + Plugin -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1"></script>
+
 <script>
-    const top10 = {!! json_encode($top10->values()) !!};
-    const bottom10 = {!! json_encode($bottom10->values()) !!};
+    const top5 = {!! json_encode($top5->values()) !!};
+    const bottom5 = {!! json_encode($bottom5->values()) !!};
+    const quadrantData = {!! json_encode($quadrantData ?? []) !!};
 
-    // === PIE CHART ===
-    const distribusiData = {
-        labels: [
-            'Pembinaan Mental',
-            'Sosialisasi Antikorupsi',
-            'Edukasi Pencegahan',
-            'Pengendalian Gratifikasi',
-            'Pemantauan Perilaku',
-            'Pemantauan LHK',
-            'Pelaksanaan Monev ZI'
-        ],
-        datasets: [{
-            data: [30, 20, 15, 10, 10, 8, 7],
-            backgroundColor: [
-                '#007bff', '#28a745', '#ffc107', '#dc3545', '#17a2b8', '#6f42c1', '#20c997'
-            ]
-        }]
-    };
-    new Chart(document.getElementById('chartDistribusi').getContext('2d'), {
-        type: 'pie',
-        data: distribusiData,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        boxWidth: 12,
-                        font: { size: 11 }
-                    }
-                },
-                title: { display: false }
-            }
-        }
-    });
-
-    // === BAR CHART: Top 10 ===
-    new Chart(document.getElementById('chartTop10').getContext('2d'), {
+    // === HORIZONTAL BAR: Top 5 ===
+    new Chart(document.getElementById('chartTop5').getContext('2d'), {
         type: 'bar',
         data: {
-            labels: top10.map(item => item.nama_satker),
+            labels: top5.map(item => item.nama_satker),
             datasets: [{
                 label: 'Total Nilai',
-                data: top10.map(item => item.total_nilai),
+                data: top5.map(item => item.total_nilai),
                 backgroundColor: '#28a745'
             }]
         },
         options: {
+            indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false }
-            },
-            scales: { y: { beginAtZero: true } }
+            plugins: { legend: { display: false } },
+            scales: { x: { beginAtZero: true } }
         }
     });
 
-    // === BAR CHART: Bottom 10 ===
-    new Chart(document.getElementById('chartBottom10').getContext('2d'), {
+    // === HORIZONTAL BAR: Attensi 5 ===
+    new Chart(document.getElementById('chartBottom5').getContext('2d'), {
         type: 'bar',
         data: {
-            labels: bottom10.map(item => item.nama_satker),
+            labels: bottom5.map(item => item.nama_satker),
             datasets: [{
                 label: 'Total Nilai',
-                data: bottom10.map(item => item.total_nilai),
+                data: bottom5.map(item => item.total_nilai),
                 backgroundColor: '#dc3545'
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { x: { beginAtZero: true } }
+        }
+    });
+
+    // === SCATTER: Kuadran Performa Satker ===
+    const ctxQuadrant = document.getElementById('chartQuadrant').getContext('2d');
+    new Chart(ctxQuadrant, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'Satuan Kerja',
+                data: quadrantData,
+                backgroundColor: context => {
+                    const x = context.raw?.x ?? 0;
+                    const y = context.raw?.y ?? 0;
+                    if (x >= 1 && y < 1) return '#0d6efd'; // Kuadran III - Baik (biru)
+                    if (x < 1 && y >= 1) return '#ffc107'; // Kuadran II - Kurang (kuning)
+                    if (x < 1 && y < 1) return '#dc3545'; // Kuadran IV - Attensi (merah)
+                    return '#28a745'; // Kuadran I - Sangat Baik (hijau)
+                },
+                borderColor: '#fff',
+                borderWidth: 1,
+                pointRadius: 6,
+                pointHoverRadius: 8
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { display: false }
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.raw.label}: (X=${context.raw.x}, Y=${context.raw.y})`;
+                        }
+                    }
+                },
+                annotation: {
+                    annotations: {
+                        xLine: { type: 'line', xMin: 1, xMax: 1, borderColor: '#888', borderWidth: 1 },
+                        yLine: { type: 'line', yMin: 1, yMax: 1, borderColor: '#888', borderWidth: 1 }
+                    }
+                }
             },
-            scales: { y: { beginAtZero: true } }
+            scales: {
+                x: {
+                    title: { display: true, text: 'Indeks Kinerja' },
+                    min: 0, max: 2,
+                    grid: { color: '#ddd' }
+                },
+                y: {
+                    title: { display: true, text: 'Nilai Capaian' },
+                    min: 0, max: 2,
+                    grid: { color: '#ddd' }
+                }
+            }
         }
     });
 </script>
