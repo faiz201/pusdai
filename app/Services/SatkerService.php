@@ -20,13 +20,13 @@ class SatkerService
     private function skor($kesimpulan)
     {
         return match (strtolower($kesimpulan ?? '-')) {
-            'baik' => 5,
-            'cukup' => 3,
-            'kurang' => 1,
+            'sangat baik' => 10,
+            'baik' => 8,
+            'cukup' => 5,
+            'kurang' => 2,
             default => 0,
         };
     }
-
 
     public function getFiltered($tahun = null, $bulan = null, $satker = null)
     {
@@ -49,6 +49,7 @@ class SatkerService
 
             $hasil = [];
             $totalNilai = 0;
+            $jumlahAspek = count($tabels);
 
             foreach ($tabels as $key => $model) {
                 $record = $model::where('satker_id', $item->id)
@@ -56,24 +57,36 @@ class SatkerService
                     ->when($bulan, fn($q) => $q->whereMonth('created_at', $bulan))
                     ->latest()->first();
 
-                $kesimpulan = $record->kesimpulan ?? '-';
-                $hasil[$key] = $kesimpulan;
+                if ($record) {
+                    $nilai = $record->nilai ?? null;
+                    $kesimpulan = $record->kesimpulan ?? null;
 
-                // tambahkan ke total skor
-                $totalNilai += $this->skor($kesimpulan);
+                    if (is_numeric($nilai)) {
+                        $hasil[$key] = $nilai;
+                        $totalNilai += $nilai;
+                    } else {
+                        $hasil[$key] = $kesimpulan ?? '-';
+                        $totalNilai += $this->skor($kesimpulan);
+                    }
+                } else {
+                    $hasil[$key] = '-';
+                }
             }
 
-            // Buat simpulan akhir otomatis
-            $simpulan =
-                $totalNilai >= 40 ? 'Sangat Baik' :
-                ($totalNilai >= 30 ? 'Baik' :
-                ($totalNilai >= 15 ? 'Cukup' : 'Kurang'));
+            $rata2 = $jumlahAspek ? round($totalNilai / $jumlahAspek, 2) : 0;
+
+            $simpulan = match (true) {
+                $rata2 >= 90 => 'Sangat Baik',
+                $rata2 >= 75 => 'Baik',
+                $rata2 >= 60 => 'Cukup',
+                default => 'Kurang',
+            };
 
             return [
                 'id' => $item->id,
                 'nama_satker' => $item->nama_satker,
                 ...$hasil,
-                'total_nilai' => $totalNilai,
+                'total_nilai' => $rata2,
                 'simpulan_performa_pencegahan' => $simpulan,
             ];
         });
@@ -86,11 +99,8 @@ class SatkerService
         return Satker::findOrFail($id);
     }
 
-    /**
-     * Data untuk export Excel/CSV
-     */
     public function getForExport($tahun = null, $bulan = null, $satker = null)
     {
-        return $this->getFiltered($tahun, $bulan,$satker);
+        return $this->getFiltered($tahun, $bulan, $satker);
     }
 }
