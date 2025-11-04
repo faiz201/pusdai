@@ -15,9 +15,9 @@
                     <label for="satker_id" class="form-label">Nama Satker</label>
                     <select name="satker_id" id="satker_id" class="form-control @error('satker_id') is-invalid @enderror">
                         <option value="">-- Pilih Satker --</option>
-                        @foreach($satkers as $satker)
-                            <option value="{{ $satker->id }}" {{ old('satker_id') == $satker->id ? 'selected' : '' }}>
-                                {{ $satker->nama_satker }}
+                        @foreach($satker as $m)
+                            <option value="{{ $m->id }}" {{ old('satker_id') == $m->id ? 'selected' : '' }}>
+                                {{ $m->nama_satker }}
                             </option>
                         @endforeach
                     </select>
@@ -73,8 +73,8 @@
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <label for="terbukti" class="form-label">Terbukti / Tidak Terbukti</label>
-                    <select name="terbukti" id="terbukti" class="form-control @error('terbukti') is-invalid @enderror">
+                    <label for="status_terbukti" class="form-label">Terbukti / Tidak Terbukti</label>
+                    <select name="status_terbukti" id="status_terbukti" class="form-control @error('terbukti') is-invalid @enderror">
                         <option value="">-- Pilih --</option>
                         <option value="Terbukti" {{ old('terbukti') == 'Terbukti' ? 'selected' : '' }}>Terbukti</option>
                         <option value="Tidak Terbukti" {{ old('terbukti') == 'Tidak Terbukti' ? 'selected' : '' }}>Tidak Terbukti</option>
@@ -120,11 +120,11 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="status_tindaklanjut" class="form-label">Status Tindak Lanjut</label>
-                    <select name="status_tindaklanjut" id="status_tindaklanjut" class="form-control @error('status_tindaklanjut') is-invalid @enderror">
+                    <select name="status_tindak_lanjut" id="status_tindak_lanjut" class="form-control @error('status_tindak_lanjut') is-invalid @enderror">
                         <option value="">-- Pilih --</option>
-                        <option value="Belum TL" {{ old('status_tindaklanjut') == 'Belum TL' ? 'selected' : '' }}>Belum TL</option>
-                        <option value="Proses TL" {{ old('status_tindaklanjut') == 'Proses TL' ? 'selected' : '' }}>Proses TL</option>
-                        <option value="Selesai TL" {{ old('status_tindaklanjut') == 'Selesai TL' ? 'selected' : '' }}>Selesai TL</option>
+                        <option value="Belum TL" {{ old('status_tindak_lanjut') == 'Belum TL' ? 'selected' : '' }}>Belum TL</option>
+                        <option value="Proses TL" {{ old('status_tindak_lanjut') == 'Proses TL' ? 'selected' : '' }}>Proses TL</option>
+                        <option value="Selesai TL" {{ old('status_tindak_lanjut') == 'Selesai TL' ? 'selected' : '' }}>Selesai TL</option>
                     </select>
                     @error('status_tindaklanjut')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -132,11 +132,11 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="dasar_tindaklanjut" class="form-label">Dasar Tindak Lanjut</label>
-                    <input type="text" name="dasar_tindaklanjut" id="dasar_tindaklanjut" 
-                           class="form-control @error('dasar_tindaklanjut') is-invalid @enderror"
-                           value="{{ old('dasar_tindaklanjut') }}">
-                    @error('dasar_tindaklanjut')
+                    <label for="dasar_tindak_lanjut" class="form-label">Dasar Tindak Lanjut</label>
+                    <input type="text" name="dasar_tindak_lanjut" id="dasar_tindak_lanjut" 
+                           class="form-control @error('dasar_tindak_lanjut') is-invalid @enderror"
+                           value="{{ old('dasar_tindak_lanjut') }}">
+                    @error('dasar_tindak_lanjut')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

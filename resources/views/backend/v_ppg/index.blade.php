@@ -25,7 +25,7 @@
                     <th>Nama Satker</th>
                     <th>Nomor SIG</th>
                     <th>Jenis</th>
-                    <th>Objek Gratifikasi<br>(Penerimaan/Penolakan)</th>
+                    <th>Objek Penanganan<br>(Penerimaan/Penolakan)</th>
                     <th>Bentuk Pemberian</th>
                     <th>Nilai Taksiran</th>
                     <th>Kategori Pemberi</th>
@@ -44,13 +44,13 @@
                         <td>{{ $item->satker->nama_satker ?? '-' }}</td>
                         <td>{{ $item->nomor_sig }}</td>
                         <td>{{ $item->jenis }}</td>
-                        <td>{{ $item->objek_gratifikasi }}</td>
+                        <td>{{ $item->objek_penanganan }}</td>
                         <td>{{ $item->bentuk_pemberian }}</td>
                         <td>{{ $item->nilai_taksiran }}</td>
                         <td>{{ $item->kategori_pemberi }}</td>
-                        <td>{{ $item->proses_bisnis_terkait }}</td>
-                        <td>{{ $item->status_penetapan_kpk }}</td>
-                        <td>{{ $item->nomor_sk_penetapan }}</td>
+                        <td>{{ $item->proses_bisnis }}</td>
+                        <td>{{ $item->status_kpk }}</td>
+                        <td>{{ $item->nomor_sk }}</td>
                         <td>{{ $item->tindak_lanjut }}</td>
                         <td>{{ $item->keterangan }}</td>
                         <td>

@@ -40,17 +40,22 @@ class PemantauanZIController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-        'nama_satker' => 'required|string|max:255',
-        'tahun_predikat' => 'required|integer',
-        'pemeliharaan_wbk' => 'required|boolean',
-        'pencanangan_wbbm' => 'required|boolean',
-        'proses_penilaian_wbbm' => 'required|boolean',
-        'predikat_wbbm' => 'nullable|string|max:255',
-    ]);
+            'nama_satker' => 'required|exists:satker,id',
+            'tahun_predikat' => 'required|integer',
+            'pemeliharaan_wbk' => 'nullable|boolean',
+            'pencanangan_wbbm' => 'nullable|boolean',
+            'proses_penilaian_wbbm' => 'nullable|boolean',
+            'predikat_wbbm' => 'nullable|string|max:255',
+        ]);
 
-    $data = Pemantauan::create($validated);
+        // Convert checkbox menjadi true/false (karena unchecked tidak dikirim)
+        $validated['pemeliharaan_wbk'] = $request->has('pemeliharaan_wbk');
+        $validated['pencanangan_wbbm'] = $request->has('pencanangan_wbbm');
+        $validated['proses_penilaian_wbbm'] = $request->has('proses_penilaian_wbbm');
 
-    return response()->json(['success' => true, 'data' => $data]);
+        Pemantauan::create($validated);
+
+        return redirect()->route('pemantauan.index')->with('success', 'Data berhasil disimpan.');
     }
 
     public function edit($id)

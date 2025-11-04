@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="section-header">
-    <h1>Edit Laporan PPG (Penanganan Laporan Gratifikasi)</h1>
+    <h1>Edit Laporan PPG (Penanganan Laporan Penanganan)</h1>
 </div>
 
 <div class="card shadow-sm">
@@ -34,8 +34,8 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Objek Gratifikasi</label>
-                    <input type="text" name="objek_gratifikasi" value="{{ $data->objek_gratifikasi }}" class="form-control">
+                    <label class="form-label">Objek Penanganan</label>
+                    <input type="text" name="objek_penanganan" value="{{ $data->objek_penanganan }}" class="form-control">
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -55,17 +55,17 @@
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Proses Bisnis Terkait</label>
-                    <input type="text" name="proses_bisnis_terkait" value="{{ $data->proses_bisnis_terkait }}" class="form-control">
+                    <input type="text" name="proses_bisnis" value="{{ $data->proses_bisnis }}" class="form-control">
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Status Penetapan oleh KPK</label>
-                    <input type="text" name="status_penetapan_kpk" value="{{ $data->status_penetapan_kpk }}" class="form-control">
+                    <input type="text" name="status_kpk" value="{{ $data->status_kpk }}" class="form-control">
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Nomor SK Penetapan</label>
-                    <input type="text" name="nomor_sk_penetapan" value="{{ $data->nomor_sk_penetapan }}" class="form-control">
+                    <input type="text" name="nomor_sk" value="{{ $data->nomor_sk }}" class="form-control">
                 </div>
 
                 <div class="col-md-6 mb-3">

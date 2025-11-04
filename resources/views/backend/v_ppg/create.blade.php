@@ -37,8 +37,8 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Objek Gratifikasi</label>
-                    <input type="text" name="objek_gratifikasi" value="{{ old('objek_gratifikasi') }}" class="form-control @error('objek_gratifikasi') is-invalid @enderror">
+                    <label class="form-label">Objek Penanganan</label>
+                    <input type="text" name="objek_penanganan" value="{{ old('objek_penanganan') }}" class="form-control @error('objek_gratifikasi') is-invalid @enderror">
                     @error('objek_gratifikasi') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -62,19 +62,19 @@
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Proses Bisnis Terkait</label>
-                    <input type="text" name="proses_bisnis_terkait" value="{{ old('proses_bisnis_terkait') }}" class="form-control @error('proses_bisnis_terkait') is-invalid @enderror">
+                    <input type="text" name="proses_bisnis" value="{{ old('proses_bisnis_terkait') }}" class="form-control @error('proses_bisnis_terkait') is-invalid @enderror">
                     @error('proses_bisnis_terkait') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Status Penetapan oleh KPK</label>
-                    <input type="text" name="status_penetapan_kpk" value="{{ old('status_penetapan_kpk') }}" class="form-control @error('status_penetapan_kpk') is-invalid @enderror">
+                    <input type="text" name="status_kpk" value="{{ old('status_penetapan_kpk') }}" class="form-control @error('status_penetapan_kpk') is-invalid @enderror">
                     @error('status_penetapan_kpk') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Nomor SK Penetapan</label>
-                    <input type="text" name="nomor_sk_penetapan" value="{{ old('nomor_sk_penetapan') }}" class="form-control @error('nomor_sk_penetapan') is-invalid @enderror">
+                    <input type="text" name="nomor_sk" value="{{ old('nomor_sk_penetapan') }}" class="form-control @error('nomor_sk_penetapan') is-invalid @enderror">
                     @error('nomor_sk_penetapan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
