@@ -123,9 +123,9 @@
                     <label for="status_tindak_lanjut" class="form-label">Status Tindak Lanjut</label>
                     <select name="status_tindak_lanjut" id="status_tindak_lanjut" class="form-control @error('status_tindak_lanjut') is-invalid @enderror">
                         <option value="">-- Pilih --</option>
-                        <option value="Belum TL" {{ old('status_tindak_lanjut', $pgh->status_tindaklanjut) == 'Belum TL' ? 'selected' : '' }}>Belum TL</option>
-                        <option value="Proses TL" {{ old('status_tindak_lanjut', $pgh->status_tindaklanjut) == 'Proses TL' ? 'selected' : '' }}>Proses TL</option>
-                        <option value="Selesai TL" {{ old('status_tindak_lanjut', $pgh->status_tindaklanjut) == 'Selesai TL' ? 'selected' : '' }}>Selesai TL</option>
+                        <option value="Belum TL" {{ old('status_tindak_lanjut', $pgh->status_tindak_lanjut) == 'Belum TL' ? 'selected' : '' }}>Belum TL</option>
+                        <option value="Proses TL" {{ old('status_tindak_lanjut', $pgh->status_tindak_lanjut) == 'Proses TL' ? 'selected' : '' }}>Proses TL</option>
+                        <option value="Selesai TL" {{ old('status_tindak_lanjut', $pgh->status_tindak_lanjut) == 'Selesai TL' ? 'selected' : '' }}>Selesai TL</option>
                     </select>
                     @error('status_tindaklanjut')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -136,7 +136,7 @@
                     <label for="dasar_tindak_lanjut" class="form-label">Dasar Tindak Lanjut</label>
                     <input type="text" name="dasar_tindak_lanjut" id="dasar_tindak_lanjut"
                            class="form-control @error('dasar_tindak_lanjut') is-invalid @enderror"
-                           value="{{ old('dasar_tindak_lanjut', $pgh->dasar_tindaklanjut) }}">
+                           value="{{ old('dasar_tindak_lanjut', $pgh->dasar_tindak_lanjut) }}">
                     @error('dasar_tindak_lanjut')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

@@ -62,10 +62,19 @@ class DashboardController extends Controller
         ];
 
         $quadrantData = $satker->map(function ($item) {
+            $colorMap = [
+                'Sangat Baik' => 'rgba(40, 167, 69, 0.8)',
+                'Baik'        => 'rgba(0, 123, 255, 0.8)',
+                'Cukup'       => 'rgba(255, 193, 7, 0.8)',
+                'Belum Memadai'      => 'rgba(220, 53, 69, 0.8)',
+            ];
+            $warna = $colorMap[$item['kesimpulan'] ?? 'Cukup'] ?? 'rgba(108, 117, 125, 0.8)';
+
             return [
-                'x' => round(($item['total_nilai'] ?? 0) / 10, 2), // contoh pembagian agar tetap dalam range kecil (0–2)
-                'y' => round(rand(5, 10) / 5, 2), // simulasi variasi nilai (nanti bisa diganti rumus sesungguhnya)
+                'x' => round(($item['total_nilai'] ?? 0) / 50, 2),
+                'y' => round(($item['total_nilai'] ?? 0) / 50 + rand(-5,5)/20, 2),
                 'label' => $item['nama_satker'],
+                'backgroundColor' => $warna,
             ];
         });
 

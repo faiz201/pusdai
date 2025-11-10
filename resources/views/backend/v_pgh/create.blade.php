@@ -74,7 +74,7 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="status_terbukti" class="form-label">Terbukti / Tidak Terbukti</label>
-                    <select name="status_terbukti" id="status_terbukti" class="form-control @error('terbukti') is-invalid @enderror">
+                    <select name="status_terbukti" id="status_terbukti" class="form-control @error('status_terbukti') is-invalid @enderror">
                         <option value="">-- Pilih --</option>
                         <option value="Terbukti" {{ old('terbukti') == 'Terbukti' ? 'selected' : '' }}>Terbukti</option>
                         <option value="Tidak Terbukti" {{ old('terbukti') == 'Tidak Terbukti' ? 'selected' : '' }}>Tidak Terbukti</option>

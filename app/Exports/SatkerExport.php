@@ -62,8 +62,6 @@ class SatkerExport implements FromCollection, WithHeadings
             'analisis_data_pegawai',
             'penanganan_hasil_survey',
             'penanganan_pengaduan',
-            'Created At',
-            'Updated At',
         ];
     }
 }

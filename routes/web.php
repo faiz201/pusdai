@@ -84,6 +84,9 @@ Route::prefix('pembinaanmental')->group(function () {
     Route::get('/{id}/edit', [PembinaanMentalController::class, 'edit'])->name('pembinaanmental.edit');
     Route::put('/{id}', [PembinaanMentalController::class, 'update'])->name('pembinaanmental.update');
     Route::delete('/{id}', [PembinaanMentalController::class, 'destroy'])->name('pembinaanmental.destroy');
+    Route::get('/pembinaanmental/export/excel', [App\Http\Controllers\PembinaanMentalController::class, 'exportExcel'])
+    ->name('pembinaanmental.export.excel');
+
 });
 
 Route::prefix('sosialisasiantikorupsi')->group(function () {

@@ -5,11 +5,17 @@
     <h1>Indeks Pembinaan Mental</h1>
 </div>
 
-<div class="card">
-    <div class="card-header justify-content-between">
-        <h4>Rekapitulasi Indeks Pembinaan Mental</h4>
-        <a href="{{ route('pembinaanmental.create') }}" class="btn btn-primary">+ Tambah Kegiatan</a>
+<div class="card-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">Rekapitulasi Indeks Pembinaan Mental</h5>
+    <div>
+        <a href="{{ route('pembinaanmental.export.excel') }}" class="btn btn-success btn-sm">
+            <i class="bi bi-file-earmark-excel"></i> Export Excel
+        </a>
+        <a href="{{ route('pembinaanmental.create') }}" class="btn btn-primary btn-sm">
+            + Tambah Kegiatan
+        </a>
     </div>
+</div>
 
     <div class="card-body">
         @if (session('success'))
@@ -43,9 +49,22 @@
                                 <td>{{ $d->output_project_learning }}</td>
                                 <td>{{ $d->indeks_total }}</td>
                                 <td>
-                                    <span class="badge badge-{{ $d->kesimpulan == 'Sangat Baik' ? 'success' : 'info' }}">
-                                        {{ $d->kesimpulan }}
-                                    </span>
+                                    @switch($d->kesimpulan)
+                                        @case('Belum Memadai')
+                                            <span class="badge bg-secondary text-white px-3 py-2 rounded-pill">Belum Memadai</span>
+                                            @break
+                                        @case('Kurang')
+                                            <span class="badge bg-danger text-white px-3 py-2 rounded-pill">Kurang</span>
+                                            @break
+                                        @case('Baik')
+                                            <span class="badge bg-primary text-white px-3 py-2 rounded-pill">Baik</span>
+                                            @break
+                                        @case('Sangat Baik')
+                                            <span class="badge bg-success text-white px-3 py-2 rounded-pill">Sangat Baik</span>
+                                            @break
+                                        @default
+                                            <span class="badge bg-light text-dark px-3 py-2 rounded-pill">-</span>
+                                    @endswitch
                                 </td>
                                 <td>
                                     <a href="{{ route('pembinaanmental.edit', $d->id) }}" class="btn btn-sm btn-warning">Edit</a>

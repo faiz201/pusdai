@@ -33,20 +33,37 @@
                 </select>
             </div>
 
-
             <div class="form-group">
                 <label>Indeks Pelaksanaan Dalam Setahun</label>
-                <input type="number" name="indeks_pelaksanaan_dalam_setahun" class="form-control" required>
+                <select name="indeks_pelaksanaan_dalam_setahun" class="form-control" required>
+                    <option value="">-- Pilih Indeks --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label>Indeks Peserta Kegiatan</label>
-                <input type="number" name="indeks_peserta_kegiatan" class="form-control" required>
+                <select name="indeks_peserta_kegiatan" class="form-control" required>
+                    <option value="">-- Pilih Indeks --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label>Output Project Learning</label>
-                <input type="number" name="output_project_learning" class="form-control" required>
+                <select name="output_project_learning" class="form-control" required>
+                    <option value="">-- Pilih Output --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Simpan</button>
