@@ -9,11 +9,22 @@ class PembinaanMental extends Model
 {
     use HasFactory;
 
-    protected $table = 'pembinaan_mental'; 
+    protected $table = 'pembinaan_mental';
 
     protected $fillable = [
         'periode',
         'satker_id',
+        'program_kegiatan',
+        'ruang_lingkup',
+        'waktu',
+        'tema',
+        'tempat',
+        'waktu_pelaksanaan',
+        'peran_pejabat_administrator',
+        'narasi_singkat_peran',
+        'jumlah_peserta',
+        'output_manfaat',
+        'link_dokumentasi',
         'indeks_pelaksanaan_dalam_setahun',
         'indeks_peserta_kegiatan',
         'output_project_learning',
@@ -21,23 +32,26 @@ class PembinaanMental extends Model
         'kesimpulan'
     ];
 
-    protected static function booted()
+    // 🔥 Hitungan otomatis (tanpa simpan ke DB)
+    public function getIndeksTotalAttribute()
     {
-        static::saving(function ($model) {
-            $pelaksanaan = $model->indeks_pelaksanaan_dalam_setahun ?? 0;
-            $peserta = $model->indeks_peserta_kegiatan ?? 0;
-            $output = $model->output_project_learning ?? 0;
+        return
+            ($this->indeks_pelaksanaan_dalam_setahun ?? 0) +
+            ($this->indeks_peserta_kegiatan ?? 0) +
+            ($this->output_project_learning ?? 0);
+    }
 
-            $total = $pelaksanaan + $peserta + $output;
+    // 🔥 Kesimpulan otomatis (tidak disimpan)
+    public function getKesimpulanAttribute($value)
+    {
+        $total = $this->indeks_total;
 
-            $model->indeks_total = $total;
-            $model->kesimpulan = match (true) {
-                $total < 3 => 'Belum Memadai',
-                $total < 5 => 'Kurang',
-                $total < 7 => 'Baik',
-                default => 'Sangat Baik',
-            };
-        });
+        return match (true) {
+            $total < 3 => 'Belum Memadai',
+            $total < 5 => 'Kurang',
+            $total < 7 => 'Baik',
+            default => 'Sangat Baik',
+        };
     }
 
     public function satker()
