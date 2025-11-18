@@ -15,15 +15,23 @@ return new class extends Migration
             $table->id();
             $table->string('periode');
             $table->unsignedBigInteger('satker_id');
-            $table->string('jenis_kegiatan');
-            $table->string('tema');
-            $table->string('waktu');
-            $table->string('tempat');
-            $table->string('narasumber');
-            $table->integer('jumlah_peserta');
-            $table->string('sasaran');
-            $table->string('indeks_efektivitas');
-            $table->text('keterangan');
+            $table->string('jenis_kegiatan')->nullable();
+            $table->string('tema')->nullable();
+            $table->string('waktu')->nullable();
+            $table->string('tempat')->nullable();
+            $table->string('narasumber')->nullable();
+            $table->integer('jumlah_peserta')->nullable();
+            $table->string('sasaran')->nullable();
+            $table->string('indeks_efektivitas')->nullable();
+            $table->text('keterangan')->nullable();
+
+            // Kertas Aplikasi (Auto-Hitung)
+            $table->integer('indeks_pelaksanaan_dalam_setahun');
+            $table->integer('indeks_peserta_kegiatan');
+            $table->integer('output_project_learning');
+            $table->integer('indeks_total');
+            $table->string('kesimpulan');
+
             $table->timestamps();
         });
     }

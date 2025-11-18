@@ -17,17 +17,17 @@ class PembinaanRencanaExport implements FromCollection, WithHeadings, ShouldAuto
                 return [
                     'no' => $index + 1,
                     'periode' => $item->periode,
-                    'program_kegiatan' => '-',
-                    'ruang_lingkup' => '-',
-                    'waktu' => '-',
-                    'tema' => '-',
-                    'tempat' => '-',
-                    'waktu_pelaksanaan' => '-',
-                    'peran_pejabat_administrator' => '-',
-                    'narasi_singkat_peran' => '-',
-                    'jumlah_peserta' => '-',
-                    'output_manfaat' => '-',
-                    'link_dokumentasi' => '-',
+                    'program_kegiatan' => $item->program_kegiatan,
+                    'ruang_lingkup' => $item->ruang_lingkup,
+                    'waktu' => $item->waktu,
+                    'tema' => $item->tema,
+                    'tempat' => $item->tempat,
+                    'waktu_pelaksanaan' => $item->waktu_pelaksanaan,
+                    'peran_pejabat_administrator' => $item->peran_pejabat_administrator,
+                    'narasi_singkat_peran' => $item->narasi_singkat_peran,
+                    'jumlah_peserta' => $item->jumlah_peserta,
+                    'output_manfaat' => $item->output_manfaat,
+                    'link_dokumentasi' => $item->_link_dokumentasi,
                 ];
             });
     }
