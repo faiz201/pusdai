@@ -43,7 +43,7 @@
                         </tr>
 
                         <tr style="background:#fffbe6;">
-                            <th>Triwulan</th>
+                            <th>Periode</th>
                             <th>Program / Kegiatan</th>
                             <th>Ruang Lingkup</th>
                             <th>Waktu</th>
@@ -156,17 +156,6 @@
 
                 </table>
             </div>
-
-            <hr>
-
-            {{-- ==========================
-                GRAFIK
-            =========================== --}}
-            <div class="mt-4">
-                <h5>Grafik Perbandingan Indeks per Triwulan</h5>
-                <canvas id="chartIndeks" height="120"></canvas>
-            </div>
-
         @endif
     </div>
 </div>

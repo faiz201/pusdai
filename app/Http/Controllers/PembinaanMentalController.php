@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PembinaanMental;
 use App\Models\Satker;
-use App\Exports\PembinaanMentalExport;
+use App\Exports\PembinaanMentalMultiSheetExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PembinaanMentalController extends Controller
@@ -192,6 +192,6 @@ class PembinaanMentalController extends Controller
     public function exportExcel()
     {
         $filename = 'pembinaan_mental_' . now()->format('Ymd_His') . '.xlsx';
-        return Excel::download(new PembinaanMentalExport, $filename);
+        return Excel::download(new PembinaanMentalMultiSheetExport, $filename);
     }
 }
