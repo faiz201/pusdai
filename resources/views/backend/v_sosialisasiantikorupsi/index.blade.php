@@ -8,7 +8,7 @@
 <div class="card-header d-flex justify-content-between align-items-center">
     <h5 class="mb-0">Rekapitulasi Indeks Sosialisasi Antikorupsi</h5>
     <div>
-        <a href="{{ route('pembinaanmental.export.excel') }}" class="btn btn-success btn-sm">
+        <a href="{{ route('sosialisasiantikorupsi.export.excel') }}" class="btn btn-success btn-sm">
             <i class="bi bi-file-earmark-excel"></i> Export Excel
         </a>
         <a href="{{ route('sosialisasiantikorupsi.create') }}" class="btn btn-primary btn-sm">
@@ -39,7 +39,7 @@
                             <th rowspan="2">No</th>
                             <th colspan="6">Rencana Kegiatan</th>
                             <th colspan="6" style="background:#b7ddb5;">Realisasi Pelaksanaan Kegiatan</th>
-                             <th rowspan="2">Aksi</th>
+                            <th rowspan="2">Aksi</th>
                         </tr>
 
                         <tr style="background:#fffbe6;">
@@ -49,7 +49,7 @@
                             <th>Tema</th>
                             <th>Tempat</th>
 
-                            <th>Narasumber</th>                            <th>Narasi Singkat Peran</th>
+                            <th>Narasumber</th>      
                             <th>Jumlah Peserta</th>
                             <th>Sasaran</th>
                             <th>Indeks Efektivitas</th>
@@ -146,6 +146,17 @@
 
                 </table>
             </div>
+
+             <hr>
+
+            {{-- ==========================
+                GRAFIK
+            =========================== --}}
+            <div class="mt-4">
+                <h5>Grafik Perbandingan Indeks per Triwulan</h5>
+                <canvas id="chartIndeks" height="120"></canvas>
+            </div>
+            
         @endif
     </div>
 </div>

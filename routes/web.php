@@ -84,7 +84,7 @@ Route::prefix('pembinaanmental')->group(function () {
     Route::get('/{id}/edit', [PembinaanMentalController::class, 'edit'])->name('pembinaanmental.edit');
     Route::put('/{id}', [PembinaanMentalController::class, 'update'])->name('pembinaanmental.update');
     Route::delete('/{id}', [PembinaanMentalController::class, 'destroy'])->name('pembinaanmental.destroy');
-    Route::get('/pembinaanmental/export/excel', [App\Http\Controllers\PembinaanMentalController::class, 'exportExcel'])
+    Route::get('/pembinaanmental/export/excel', [PembinaanMentalController::class, 'exportExcel'])
     ->name('pembinaanmental.export.excel');
 
 });
@@ -96,6 +96,8 @@ Route::prefix('sosialisasiantikorupsi')->group(function () {
     Route::get('/{id}/edit', [SosialisasiAntikorupsiController::class, 'edit'])->name('sosialisasiantikorupsi.edit');
     Route::put('/{id}', [SosialisasiAntikorupsiController::class, 'update'])->name('sosialisasiantikorupsi.update');
     Route::delete('/{id}', [SosialisasiAntikorupsiController::class, 'destroy'])->name('sosialisasiantikorupsi.destroy');
+    Route::get('/sosialisasiantikorupsi/export/excel', [SosialisasiAntikorupsiController::class, 'exportExcel'])
+    ->name('sosialisasiantikorupsi.export.excel');
 });
 
 Route::prefix('edukasi')->group(function () {
@@ -105,6 +107,8 @@ Route::prefix('edukasi')->group(function () {
     Route::get('/{id}/edit', [EdukasiPencegahanPelanggaranPegawaiController::class, 'edit'])->name('edukasi.edit');
     Route::put('/{id}', [EdukasiPencegahanPelanggaranPegawaiController::class, 'update'])->name('edukasi.update');
     Route::delete('/{id}', [EdukasiPencegahanPelanggaranPegawaiController::class, 'destroy'])->name('edukasi.destroy');
+    Route::get('/edukasi/export/excel', [SosialisasiAntikorupsiController::class, 'exportExcel'])
+    ->name('edukasi.export.excel');
 });
 
 Route::middleware(['auth'])->group(function () {

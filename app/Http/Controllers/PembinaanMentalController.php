@@ -12,13 +12,9 @@ class PembinaanMentalController extends Controller
 {
     public function index(Request $request)
     {
-        $tahun = $request->input('tahun');
-        $periode = $request->input('periode');
         $satker = $request->input('satker');
 
         $data = PembinaanMental::with('satker')
-            ->when($tahun, fn($q) => $q->whereYear('created_at', $tahun))
-            ->when($periode, fn($q) => $q->where('periode', $periode))
             ->when($satker, fn($q) =>
                 $q->whereHas('satker', fn($sq) =>
                     $sq->where('nama_satker', 'like', "%{$satker}%")

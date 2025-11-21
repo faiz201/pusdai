@@ -1,94 +1,223 @@
 @extends('backend.v_layouts.app')
 
-@section('content_title', 'Tambah Edukasi Pencegahan Pelanggaran Pegawai')
 @section('content')
-<div class="card">
-    <div class="card-header">
-        <h4>Tambah Data Edukasi Pencegahan Pelanggaran Pegawai</h4>
-    </div>
+<div class="section-header">
+    <h1>Tambah Edukasi Pencegahan Pelanggaran pegawai</h1>
+</div>
+
+<div class="card shadow-sm">
     <div class="card-body">
+
         <form action="{{ route('edukasi.store') }}" method="POST">
             @csrf
 
-            <div class="form-group mb-3">
-                <label for="nama_satker">Satker</label>
-                <select name="satker_id" id="nama_satker" class="form-control" required>
-                    <option value="">-- Pilih Satker --</option>
-                    @foreach($satker as $m)
-                        <option value="{{ $m->id }}" {{ old('satker_id') == $m->id ? 'selected' : '' }}>
-                            {{ $m->nama_satker }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-
+            {{-- ========================= --}}
+            {{-- INFO PERIODE & SATKER --}}
+            {{-- ========================= --}}
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label>Periode</label>
-                        <select name="periode" class="form-control" required>
-                            <option value="">-- Pilih Periode --</option>
-                            <option value="Triwulan I">Triwulan I</option>
-                            <option value="Triwulan II">Triwulan II</option>
-                            <option value="Triwulan III">Triwulan III</option>
-                            <option value="Triwulan IV">Triwulan IV</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Jenis Kegiatan</label>
-                        <input type="text" name="jenis_kegiatan" class="form-control" required>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Tema</label>
-                        <input type="text" name="tema" class="form-control">
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Waktu</label>
-                        <input type="text" name="waktu" class="form-control">
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Tempat</label>
-                        <input type="text" name="tempat" class="form-control">
-                    </div>
+                <div class="col-md-4 mb-3">
+                    <label><b>Periode</b></label>
+                    <select name="periode" class="form-control" required>
+                        <option value="">-- Pilih Periode --</option>
+                        <option value="Triwulan I">Triwulan I</option>
+                        <option value="Triwulan II">Triwulan II</option>
+                        <option value="Triwulan III">Triwulan III</option>
+                        <option value="Triwulan IV">Triwulan IV</option>
+                    </select>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label>Narasumber</label>
-                        <input type="text" name="narasumber" class="form-control">
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Jumlah Peserta</label>
-                        <input type="number" name="jumlah_peserta" class="form-control">
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Sasaran</label>
-                        <input type="text" name="sasaran" class="form-control">
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Indeks Efektivitas</label>
-                        <input type="text" name="indeks_efektivitas" class="form-control">
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Keterangan</label>
-                        <textarea name="keterangan" class="form-control" rows="3"></textarea>
-                    </div>
+                <div class="col-md-8 mb-3">
+                    <label><b>Satker</b></label>
+                    <select name="satker_id" class="form-control" required>
+                        <option value="">-- Pilih Satker --</option>
+                        @foreach($satker as $m)
+                            <option value="{{ $m->id }}">{{ $m->nama_satker }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
-            <button class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-            <a href="{{ route('edukasi.index') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Kembali
-            </a>
+            <hr>
+
+            {{-- ========================= --}}
+            {{-- TABEL 1: INDEKS PENILAIAN --}}
+            {{-- ========================= --}}
+            <h5 class="mb-2"><b>1. Indeks Penilaian Edukasi Pencegahan Pelanggaran pegawai</b></h5>
+
+            <table class="table table-bordered" style="background:#dbe5f1;">
+                <thead class="text-center" style="background:#9cc2e5; font-weight:bold;">
+                    <tr>
+                        <th width="40%">Komponen</th>
+                        <th width="20%">Indeks</th>
+                        <th width="40%">Keterangan</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Pelaksanaan Dalam Setahun</td>
+                        <td class="text-center">
+                            <select name="indeks_pelaksanaan_dalam_setahun" id="pelaksanaan" class="form-control form-control-sm" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </td>
+                        <td>Jumlah kegiatan Edukasi Pencegahan Pelanggaran pegawai dalam satu tahun</td>
+                    </tr>
+                    <tr>
+                        <td>Peserta Kegiatan</td>
+                        <td class="text-center">
+                            <select name="indeks_peserta_kegiatan" id="peserta" class="form-control form-control-sm" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </td>
+                        <td>Persentase pegawai yang mengikuti kegiatan</td>
+                    </tr>
+                    <tr>
+                        <td>Output Project Learning</td>
+                        <td class="text-center">
+                            <select name="output_project_learning" id="output" class="form-control form-control-sm" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </td>
+                        <td>Kualitas laporan project learning</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            {{-- ========================= --}}
+            {{-- TABEL 2: HASIL AKHIR --}}
+            {{-- ========================= --}}
+            <h5 class="mb-2"><b>2. Hasil Akhir Penilaian</b></h5>
+
+            <table class="table table-bordered" style="background:#e2efd9;">
+                <thead class="text-center" style="background:#a9d08e; font-weight:bold;">
+                    <tr>
+                        <th width="50%">Komponen</th>
+                        <th width="50%">Nilai</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><b>Indeks Total</b></td>
+                        <td>
+                            <input type="text" id="indeks_total" name="indeks_total" class="form-control" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Kesimpulan</b></td>
+                        <td>
+                            <input type="text" id="kesimpulan" name="kesimpulan" class="form-control" readonly>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            {{-- ===================================== --}}
+            {{-- 3. RENCANA KEGIATAN (TABEL BARU) --}}
+            {{-- ===================================== --}}
+            <h5 class="mb-3"><b>3. Rencana Kegiatan</b></h5>
+
+            <table class="table table-bordered" style="background:#fff2cc;">
+                <thead class="text-center" style="background:#ffe699; font-weight:bold;">
+                    <tr>
+                        <th>Jenis Kegiatan</th>
+                        <th>Waktu</th>
+                        <th>Tema</th>
+                        <th>Tempat</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="jenis_kegiatan" class="form-control"></td>
+                        <td><input type="text" name="waktu" class="form-control"></td>
+                        <td><input type="text" name="tema" class="form-control"></td>
+                        <td><input type="text" name="tempat" class="form-control"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            {{-- ===================================== --}}
+            {{-- 4. REALISASI PELAKSANAAN (TABEL BARU) --}}
+            {{-- ===================================== --}}
+            <h5 class="mb-3"><b>4. Realisasi Pelaksanaan Kegiatan</b></h5>
+
+            <table class="table table-bordered" style="background:#e2efda;">
+                <thead class="text-center" style="background:#c6e0b4; font-weight:bold;">
+                    <tr>
+                        <th>Narasumber</th>
+                        <th>Jumlah Peserta</th>
+                        <th>Sasaran</th>
+                        <th>Indeks Efektivitas</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="narasumber" class="form-control"></td>
+                        <td><input type="number" name="jumlah_peserta" class="form-control"></td>
+                        <td><input type="text" name="sasaran" class="form-control"></td>
+                        <td><input type="text" name="indeks_efektivitas" class="form-control"></td>
+                        <td><input type="text" name="keterangan" class="form-control"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            {{-- BUTTON --}}
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <a href="{{ route('edukasi.index') }}" class="btn btn-secondary">Kembali</a>
+
         </form>
+
     </div>
 </div>
+
+{{-- ========================= --}}
+{{-- SCRIPT AUTO HITUNG --}}
+{{-- ========================= --}}
+<script>
+    function hitungTotal() {
+        let p1 = parseInt(document.getElementById('pelaksanaan').value) || 0;
+        let p2 = parseInt(document.getElementById('peserta').value) || 0;
+        let p3 = parseInt(document.getElementById('output').value) || 0;
+
+        let total = p1 + p2 + p3;
+        document.getElementById('indeks_total').value = total;
+
+        let kesimpulan = "";
+        if (total < 3) kesimpulan = "Belum Memadai";
+        else if (total < 5) kesimpulan = "Kurang";
+        else if (total < 7) kesimpulan = "Baik";
+        else kesimpulan = "Sangat Baik";
+
+        document.getElementById('kesimpulan').value = kesimpulan;
+    }
+
+    document.querySelectorAll('select').forEach(el => {
+        el.addEventListener('change', hitungTotal);
+    });
+</script>
+
 @endsection

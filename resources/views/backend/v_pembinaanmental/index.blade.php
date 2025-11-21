@@ -156,6 +156,17 @@
 
                 </table>
             </div>
+
+             <hr>
+
+            {{-- ==========================
+                GRAFIK
+            =========================== --}}
+            <div class="mt-4">
+                <h5>Grafik Perbandingan Indeks per Triwulan</h5>
+                <canvas id="chartIndeks" height="120"></canvas>
+            </div>
+
         @endif
     </div>
 </div>

@@ -5,16 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SosialisasiAntikorupsi;
 use App\Models\Satker;
-use App\Exports\PembinaanMentalExport;
+use App\Exports\SosialisasiAntikorupsiExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SosialisasiAntikorupsiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('backend.v_sosialisasiantikorupsi.index', [
-            'data' => SosialisasiAntikorupsi::with('satker')->get()
-        ]);
+        $satker = $request->input('satker');
+
+        $data = SosialisasiAntikorupsi::with('satker')
+            ->when($satker, fn($q) =>
+                $q->whereHas('satker', fn($sq) =>
+                    $sq->where('nama_satker', 'like', "%{$satker}%")
+                )
+            )
+            ->orderByRaw("
+                CASE 
+                    WHEN periode = 'Triwulan I' THEN 1
+                    WHEN periode = 'Triwulan II' THEN 2
+                    WHEN periode = 'Triwulan III' THEN 3
+                    WHEN periode = 'Triwulan IV' THEN 4
+                    ELSE 5
+                END
+            ")
+            ->get();
+
+        $labels = $data->pluck('periode');
+        $totals = $data->pluck('indeks_total');
+        
+        return view('backend.v_sosialisasiantikorupsi.index', compact('data', 'labels', 'totals'));
     }
 
     public function create()
@@ -155,7 +175,7 @@ class SosialisasiAntikorupsiController extends Controller
 
     public function exportExcel()
     {
-        $filename = 'pembinaan_mental_' . now()->format('Ymd_His') . '.xlsx';
-        return Excel::download(new PembinaanMentalExport, $filename);
+        $filename = 'sosialisasi_antikorupsi_' . now()->format('Ymd_His') . '.xlsx';
+        return Excel::download(new SosialisasiAntikorupsiExport, $filename);
     }
 }

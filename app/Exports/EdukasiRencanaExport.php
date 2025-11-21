@@ -2,17 +2,17 @@
 
 namespace App\Exports;
 
-use App\Models\SosialisasiAntikorupsi;
+use App\Models\EdukasiPencegahanPelanggaranPegawai;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class SosialisasiRencanaExport implements FromCollection
+class EdukasiRencanaExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return SosialisasiAntikorupsi::with('satker')
+        return EdukasiPencegahanPelanggaranPegawai::with('satker')
             ->get()
             ->map(function ($item, $index) {
                 return [
