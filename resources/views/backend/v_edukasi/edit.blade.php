@@ -136,7 +136,6 @@
             <table class="table table-bordered" style="background:#fff2cc;">
                 <thead class="text-center" style="background:#ffe699; font-weight:bold;">
                     <tr>
-                        <th>Periode</th>
                         <th>Jenis Kegiatan</th>
                         <th>Waktu</th>
                         <th>Tema</th>
