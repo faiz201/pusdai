@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('satker_id')->constrained('satker')->onDelete('cascade');
             $table->timestamps();
         });
     }

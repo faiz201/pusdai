@@ -6,9 +6,13 @@ use App\Models\Satker;
 use App\Models\PembinaanMental;
 use App\Models\SosialisasiAntikorupsi;
 use App\Models\EdukasiPencegahanPelanggaranPegawai;
+use App\Models\HasilSurvei;
 use App\Models\PenangananLaporanGratifikasi;
 use App\Models\PGH;
+use App\Models\Lhk;
+use App\Models\Pegawai;
 use App\Models\Pemantauan;
+use App\Models\Pengaduan;
 
 class SatkerService
 {
@@ -44,7 +48,11 @@ class SatkerService
                 'edukasi_pencegahan_pelanggaran_pegawai' => EdukasiPencegahanPelanggaranPegawai::class,
                 'penanganan_laporan_gratifikasi' => PenangananLaporanGratifikasi::class,
                 'pemantauan_perilaku_gaya_hidup_pegawai' => PGH::class,
+                'pemantauan_pemenuhan_kewajiban_lhk' => Lhk::class,
                 'pelaksanaan_monev_zi' => Pemantauan::class,
+                'analisis_data_informasi_pegawai' => Pegawai::class,
+                'hasil_survei_kinerja_organisasi' => HasilSurvei::class,
+                'penanganan_pengaduan_masyarakat' => Pengaduan::class
             ];
 
             $hasil = [];

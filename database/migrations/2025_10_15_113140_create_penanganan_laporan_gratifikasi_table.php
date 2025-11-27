@@ -25,6 +25,14 @@ return new class extends Migration
             $table->string('nomor_sk')->nullable();
             $table->string('tindak_lanjut')->nullable();
             $table->text('keterangan')->nullable();
+
+            // Kertas Aplikasi (Auto-Hitung)
+            $table->integer('indeks_pelaksanaan_dalam_setahun');
+            $table->integer('indeks_peserta_kegiatan');
+            $table->integer('output_project_learning');
+            $table->integer('indeks_total');
+            $table->string('kesimpulan');
+            
             $table->timestamps();
         });
     }

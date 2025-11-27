@@ -117,13 +117,19 @@ Route::prefix('edukasi')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('ppg', PenangananLaporanGratifikasiController::class);
+    Route::get('/ppg/export/excel', [PenangananLaporanGratifikasiController::class, 'exportExcel'])
+    ->name('ppg.export.excel');
 });
 
 Route::resource('pgh', PGHController::class);
+Route::get('/pgh/export/excel', [PGHController::class, 'exportExcel'])
+    ->name('pgh.export.excel');
 
 Route::resource('lhk', Lhkcontroller::class);
 
 Route::resource('pemantauan', PemantauanZIController::class);
+Route::get('/pemantauan/export/excel', [PemantauanZIController::class, 'exportExcel'])
+    ->name('pemantauan.export.excel');
 
 Route::resource('pegawai', PegawaiController::class);
 

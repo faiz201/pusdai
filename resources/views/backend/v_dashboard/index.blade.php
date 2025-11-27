@@ -76,6 +76,7 @@
                         <th>Analisis Data</th>
                         <th>Penanganan Survey</th>
                         <th>Penanganan Pengaduan</th>
+                        <th>Total Nilai</th>
                         <th>Simpulan Performa</th>
                     </tr>
                 </thead>
@@ -89,11 +90,11 @@
                             <td>{{ $m['edukasi_pencegahan_pelanggaran_pegawai'] }}</td>
                             <td>{{ $m['penanganan_laporan_gratifikasi'] }}</td>
                             <td>{{ $m['pemantauan_perilaku_gaya_hidup_pegawai'] }}</td>
-                            <td>{{ $m['pemantauan_pemenuhanan_kewajiban_lhk_pegawai'] }}</td>
+                            <td>{{ $m['pemantauan_pemenuhan_kewajiban_lhk'] }}</td>
                             <td>{{ $m['pelaksanaan_monev_zi'] }}</td>
-                            <td>{{ $m['pengolahan_analisis_data_informasi_pegawai'] }}</td>
-                            <td>{{ $m['pengolahan_hasil_survei_organisasi'] }}</td>
-                            <td>{{ $m['pemantauan_pengaduan_masyarakat'] }}</td>
+                            <td>{{ $m['analisis_data_informasi_pegawai'] }}</td>
+                            <td>{{ $m['hasil_survei_kinerja_organisasi'] }}</td>
+                            <td>{{ $m['penanganan_pengaduan_masyarakat'] }}</td>
                             <td class="fw-bold text-center">{{ $m['total_nilai'] }}</td>
                             <td><strong>{{ $m['simpulan_performa_pencegahan'] }}</strong></td>
                         </tr>

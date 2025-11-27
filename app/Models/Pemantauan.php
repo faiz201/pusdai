@@ -18,17 +18,37 @@ class Pemantauan extends Model
         'pencanangan_wbbm',
         'penilaian_wbbm',
         'predikat_wbbm',
+        'indeks_pelaksanaan_dalam_setahun',
+        'indeks_peserta_kegiatan',
+        'output_project_learning',
+        'indeks_total',
+        'kesimpulan'
     ];
 
-    // Relasi ke Satker
-    public function satker()
+    // 🔥 Hitungan otomatis (tanpa simpan ke DB)
+    public function getIndeksTotalAttribute()
     {
-        return $this->belongsTo(Satker::class);
+        return
+            ($this->indeks_pelaksanaan_dalam_setahun ?? 0) +
+            ($this->indeks_peserta_kegiatan ?? 0) +
+            ($this->output_project_learning ?? 0);
     }
 
-    // Getter indeks (otomatis 1 kalau "Ya", 0 kalau "Tidak")
-    public function getIndeks($field)
+    // 🔥 Kesimpulan otomatis (tidak disimpan)
+    public function getKesimpulanAttribute($value)
     {
-        return $this->{$field} === 'Ya' ? 1 : 0;
+        $total = $this->indeks_total;
+
+        return match (true) {
+            $total < 3 => 'Belum Memadai',
+            $total < 5 => 'Kurang',
+            $total < 7 => 'Baik',
+            default => 'Sangat Baik',
+        };
+    }
+
+    public function satker()
+    {
+        return $this->belongsTo(Satker::class, 'satker_id');
     }
 }

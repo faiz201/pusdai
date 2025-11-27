@@ -18,9 +18,9 @@ class Dashboard extends Model
         'pengendalian_gratifikasi',
         'pemantauan_perilaku',
         'pemantauan_lhk',
-        'pelaksanaan_monev_zi',
+        'pelaksanaan_zi',
         'analisis_data_pegawai',
-        'penanganan_hasil_survey',
+        'penanganan_hasil_survei',
         'penanganan_pengaduan',
     ];
 

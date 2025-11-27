@@ -2,16 +2,20 @@
 
 @section('content')
 <div class="section-header">
-    <h1>Penanganan Laporan Gratifikasi (PPG)</h1>
+    <h1>Indeks Penanganan Laporan Gratifikasi</h1>
 </div>
 
-<div class="card shadow-sm">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h4>Daftar Laporan PPG</h4>
+<div class="card-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">Rekapitulasi Indeks Penanganan Laporan Gratifikasi</h5>
+    <div>
+        <a href="{{ route('ppg.export.excel') }}" class="btn btn-success btn-sm">
+            <i class="bi bi-file-earmark-excel"></i> Export Excel
+        </a>
         <a href="{{ route('ppg.create') }}" class="btn btn-primary btn-sm">
-            <i class="fas fa-plus"></i> Tambah Data
+            + Tambah Kegiatan
         </a>
     </div>
+</div>
 
     <div class="card-body table-responsive">
         @if (session('success'))
@@ -73,5 +77,63 @@
             </tbody>
         </table>
     </div>
+
+    {{-- ==========================
+        TABEL 2 — Kertas Aplikasi
+    =========================== --}}
+        <h5 class="mt-4 mb-2">Kertas Aplikasi</h5>
+        <div class="table-responsive mb-4">
+            <table class="table table-bordered text-center align-middle">
+
+                <thead class="table-secondary fw-bold">
+                    <tr>
+                        <th>Triwulan</th>
+                        <th>Indeks Pelaksanaan Setahun</th>
+                        <th>Indeks Peserta Kegiatan</th>
+                        <th>Output Project Learning</th>
+                        <th>Indeks Total</th>
+                        <th>Kesimpulan</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($data as $d)
+                    <tr>
+                        <td>{{ $d->periode }}</td>
+                        <td>{{ $d->indeks_pelaksanaan_dalam_setahun }}</td>
+                        <td>{{ $d->indeks_peserta_kegiatan }}</td>
+                        <td>{{ $d->output_project_learning }}</td>
+                        <td>{{ $d->indeks_total }}</td>
+                        <td>
+                            @switch($d->kesimpulan)
+                                @case('Belum Memadai')
+                                    <span class="badge bg-secondary">Belum Memadai</span>
+                                    @break
+                                @case('Kurang')
+                                    <span class="badge bg-danger">Kurang</span>
+                                    @break
+                                @case('Baik')
+                                    <span class="badge bg-primary">Baik</span>
+                                    @break
+                                @case('Sangat Baik')
+                                    <span class="badge bg-success">Sangat Baik</span>
+                                    @break
+                                @default
+                                    -
+                            @endswitch
+                        </td>
+                        <td>
+                            <a href="{{ route('ppg.edit', $d->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ route('ppg.destroy', $d->id) }}" method="POST" class="d-inline">
+                                @csrf @method('DELETE')
+                                <button class="btn btn-sm btn-danger" onclick="return confirm('Hapus data ini?')">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+
+            </table>
+        </div>
 </div>
 @endsection
