@@ -62,6 +62,7 @@ class SosialisasiAntikorupsiController extends Controller
             'tempat'           => 'nullable|string',
             'narasumber'       => 'nullable|string',
             'jumlah_peserta'   => 'nullable|numeric',
+            'kategori_peserta' => 'nullable|string',
             'sasaran'          => 'nullable|string',
             'keterangan'       => 'nullable|string',
         ]);
@@ -95,6 +96,7 @@ class SosialisasiAntikorupsiController extends Controller
             'tempat'           => $request->tempat,
             'narasumber'       => $request->narasumber,
             'jumlah_peserta'   => $request->jumlah_peserta,
+            'kategori_peserta' => $request->kategori_peserta,
             'sasaran'          => $request->sasaran,
             'keterangan'       => $request->keterangan,
         ]);
@@ -127,6 +129,7 @@ class SosialisasiAntikorupsiController extends Controller
             'tempat'           => 'nullable|string',
             'narasumber'       => 'nullable|string',
             'jumlah_peserta'   => 'nullable|numeric',
+            'kategori_peserta' => 'nullable|string',
             'sasaran'          => 'nullable|string',
             'keterangan'       => 'nullable|string',
         ]);
@@ -160,6 +163,7 @@ class SosialisasiAntikorupsiController extends Controller
             'tempat'           => $request->tempat,
             'narasumber'       => $request->narasumber,
             'jumlah_peserta'   => $request->jumlah_peserta,
+            'kategori_peserta' => $request->kategori_peserta,
             'sasaran'          => $request->sasaran,
             'keterangan'       => $request->keterangan,
         ]);

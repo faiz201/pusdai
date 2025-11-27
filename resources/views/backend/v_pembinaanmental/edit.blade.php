@@ -60,10 +60,10 @@
                         <td>Pelaksanaan Dalam Setahun</td>
                         <td class="text-center">
                             <select name="indeks_pelaksanaan_dalam_setahun" id="pelaksanaan" class="form-control form-control-sm" required>
-                                <option value="1" {{ $data->indeks_pelaksanaan_dalam_setahun == 1 ? 'selected' : '' }}>1</option>
-                                <option value="2" {{ $data->indeks_pelaksanaan_dalam_setahun == 2 ? 'selected' : '' }}>2</option>
-                                <option value="3" {{ $data->indeks_pelaksanaan_dalam_setahun == 3 ? 'selected' : '' }}>3</option>
-                                <option value="4" {{ $data->indeks_pelaksanaan_dalam_setahun == 4 ? 'selected' : '' }}>4</option>
+                                <option value="1" {{ $data->indeks_pelaksanaan_dalam_setahun == 1 ? 'selected' : '' }}>1 (1 Kegiatan/lebih dengan 1 Bidang berbeda)</option>
+                                <option value="2" {{ $data->indeks_pelaksanaan_dalam_setahun == 2 ? 'selected' : '' }}>2 (2 Kegiatan/lebih dengan 2 Bidang berbeda)</option>
+                                <option value="3" {{ $data->indeks_pelaksanaan_dalam_setahun == 3 ? 'selected' : '' }}>3 (3 Kegiatan/lebih dengan 3 Bidang berbeda)</option>
+                                <option value="4" {{ $data->indeks_pelaksanaan_dalam_setahun == 4 ? 'selected' : '' }}>4 (4 Kegiatan/lebih dengan 4 Bidang berbeda)</option>
                             </select>
                         </td>
                         <td>Jumlah kegiatan pembinaan mental dalam satu tahun</td>
@@ -72,10 +72,10 @@
                         <td>Peserta Kegiatan</td>
                         <td class="text-center">
                             <select name="indeks_peserta_kegiatan" id="peserta" class="form-control form-control-sm" required>
-                                <option value="1" {{ $data->indeks_peserta_kegiatan == 1 ? 'selected' : '' }}>1</option>
-                                <option value="2" {{ $data->indeks_peserta_kegiatan == 2 ? 'selected' : '' }}>2</option>
-                                <option value="3" {{ $data->indeks_peserta_kegiatan == 3 ? 'selected' : '' }}>3</option>
-                                <option value="4" {{ $data->indeks_peserta_kegiatan == 4 ? 'selected' : '' }}>4</option>
+                                <option value="1" {{ $data->indeks_peserta_kegiatan == 1 ? 'selected' : '' }}>1 (0-39%)</option>
+                                <option value="2" {{ $data->indeks_peserta_kegiatan == 2 ? 'selected' : '' }}>2 (40-59%)</option>
+                                <option value="3" {{ $data->indeks_peserta_kegiatan == 3 ? 'selected' : '' }}>3 (60-79%)</option>
+                                <option value="4" {{ $data->indeks_peserta_kegiatan == 4 ? 'selected' : '' }}>4 (80-100%)</option>
                             </select>
                         </td>
                         <td>Persentase pegawai yang mengikuti kegiatan</td>
@@ -84,10 +84,10 @@
                         <td>Output Project Learning</td>
                         <td class="text-center">
                             <select name="output_project_learning" id="output" class="form-control form-control-sm" required>
-                                <option value="1" {{ $data->output_project_learning == 1 ? 'selected' : '' }}>1</option>
-                                <option value="2" {{ $data->output_project_learning == 2 ? 'selected' : '' }}>2</option>
-                                <option value="3" {{ $data->output_project_learning == 3 ? 'selected' : '' }}>3</option>
-                                <option value="4" {{ $data->output_project_learning == 4 ? 'selected' : '' }}>4</option>
+                                <option value="1" {{ $data->output_project_learning == 1 ? 'selected' : '' }}>1 (Belum Memadai)</option>
+                                <option value="2" {{ $data->output_project_learning == 2 ? 'selected' : '' }}>2 (Kurang)</option>
+                                <option value="3" {{ $data->output_project_learning == 3 ? 'selected' : '' }}>3 (Baik)</option>
+                                <option value="4" {{ $data->output_project_learning == 4 ? 'selected' : '' }}>4 (Sangat Baik)</option>
                             </select>
                         </td>
                         <td>Kualitas laporan project learning</td>

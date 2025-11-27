@@ -59,10 +59,10 @@
                         <td class="text-center">
                             <select name="indeks_pelaksanaan_dalam_setahun" id="pelaksanaan" class="form-control form-control-sm" required>
                                 <option value="">-- Pilih --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="1">1 (1 Kegiatan/lebih dengan 1 Bidang berbeda)</option>
+                                <option value="2">2 (2 Kegiatan/lebih dengan 2 Bidang berbeda)</option>
+                                <option value="3">3 (3 Kegiatan/lebih dengan 3 Bidang berbeda)</option>
+                                <option value="4">4 (4 Kegiatan/lebih dengan 4 Bidang berbeda)</option>
                             </select>
                         </td>
                         <td>Jumlah kegiatan pembinaan mental dalam satu tahun</td>
@@ -72,10 +72,10 @@
                         <td class="text-center">
                             <select name="indeks_peserta_kegiatan" id="peserta" class="form-control form-control-sm" required>
                                 <option value="">-- Pilih --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="1">1 (0-39%)</option>
+                                <option value="2">2 (40-59%)</option>
+                                <option value="3">3 (60-79%)</option>
+                                <option value="4">4 (80-100%)</option>
                             </select>
                         </td>
                         <td>Persentase pegawai yang mengikuti kegiatan</td>
@@ -85,10 +85,10 @@
                         <td class="text-center">
                             <select name="output_project_learning" id="output" class="form-control form-control-sm" required>
                                 <option value="">-- Pilih --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="1">1 (Belum Memadai)</option>
+                                <option value="2">2 (Kurang)</option>
+                                <option value="3">3 (Baik)</option>
+                                <option value="4">4 (Sangat Baik)</option>
                             </select>
                         </td>
                         <td>Kualitas laporan project learning</td>

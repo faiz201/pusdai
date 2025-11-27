@@ -19,6 +19,7 @@ class SosialisasiAntikorupsi extends Model
         'tempat',
         'narasumber',
         'jumlah_peserta',
+        'kategori_peserta',
         'sasaran',
         'indeks_efektivitas',
         'keterangan',

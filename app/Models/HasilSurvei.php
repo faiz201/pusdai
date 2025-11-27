@@ -1,37 +1,16 @@
-<?php  
+<?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EdukasiPencegahanPelanggaranPegawai extends Model
+class HasilSurvei extends Model
 {
     use HasFactory;
-
-    protected $table = 'edukasi_pencegahan_pelanggaran_pegawai';
-
-    protected $fillable = [
-        'periode',
-        'satker_id',
-        'jenis_kegiatan',
-        'tema',
-        'waktu',
-        'tempat',
-        'metode_pelaksanaan',
-        'narasumber',
-        'jumlah_peserta',
-        'kategori_peserta',
-        'sasaran',
-        'indeks_efektivitas',
-        'keterangan',
-        'indeks_pelaksanaan_dalam_setahun',
-        'indeks_peserta_kegiatan',
-        'output_project_learning',
-        'indeks_total',
-        'kesimpulan'
-    ];
-
-    // 🔥 Hitungan otomatis (tanpa simpan ke DB)
+    
+    protected $table = 'hasil_survei';
+    
     public function getIndeksTotalAttribute()
     {
         return

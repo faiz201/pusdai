@@ -12,7 +12,11 @@ use App\Http\Controllers\SosialisasiAntikorupsiController;
 use App\Http\Controllers\EdukasiPencegahanPelanggaranPegawaiController;
 use App\Http\Controllers\PenangananLaporanGratifikasiController;
 use App\Http\Controllers\PGHController;
+use App\Http\Controllers\LhkController;
 use App\Http\Controllers\PemantauanZIController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\HasilSurveiController;
+use App\Http\Controllers\PengaduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,4 +121,12 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('pgh', PGHController::class);
 
+Route::resource('lhk', Lhkcontroller::class);
+
 Route::resource('pemantauan', PemantauanZIController::class);
+
+Route::resource('pegawai', PegawaiController::class);
+
+Route::resource('survey', HasilSurveiController::class);
+
+Route::resource('pengaduan', Pengaduancontroller::class);

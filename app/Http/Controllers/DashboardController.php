@@ -13,7 +13,11 @@ use App\Models\{
     EdukasiPencegahanPelanggaranPegawai,
     PenangananLaporanGratifikasi,
     PGH,
-    Pemantauan
+    LHK,
+    Pemantauan,
+    Pegawai,
+    HasilSurvei,
+    Pengaduan
 };
 
 class DashboardController extends Controller
@@ -58,7 +62,11 @@ class DashboardController extends Controller
             'Edukasi Pencegahan Pelanggaran Pegawai' => EdukasiPencegahanPelanggaranPegawai::where(fn($q) => $applyFilter($q))->count(),
             'Penanganan Laporan Gratifikasi' => PenangananLaporanGratifikasi::where(fn($q) => $applyFilter($q))->count(),
             'Perilaku Gaya Hidup Pegawai' => PGH::where(fn($q) => $applyFilter($q))->count(),
+            'Pemantauan Pemenuhan Kewajiban LHK Pegawai' => LHK::where(fn($q) => $applyFilter($q))->count(),
             'Pelaksanaan Monev ZI' => Pemantauan::where(fn($q) => $applyFilter($q))->count(),
+            'Pengolahan Analisis Data Informasi Pegawai' => Pegawai::where(fn($q) => $applyFilter($q))->count(),
+            'Pengolahan Hasil Survey Kinerja Organisasi' => HasilSurvei::where(fn($q) => $applyFilter($q))->count(),
+            'Pemantauan Pengaduan Masyarakat' => Pengaduan::where(fn($q) => $applyFilter($q))->count(),
         ];
 
         $quadrantData = $satker->map(function ($item) {

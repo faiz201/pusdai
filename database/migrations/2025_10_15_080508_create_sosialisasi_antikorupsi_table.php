@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('tempat')->nullable();
             $table->string('narasumber')->nullable();
             $table->integer('jumlah_peserta')->nullable();
+            $table->string('kategori_peserta')->nullable();
             $table->string('sasaran')->nullable();
             $table->string('indeks_efektivitas')->nullable();
             $table->text('keterangan')->nullable();

@@ -89,7 +89,11 @@
                             <td>{{ $m['edukasi_pencegahan_pelanggaran_pegawai'] }}</td>
                             <td>{{ $m['penanganan_laporan_gratifikasi'] }}</td>
                             <td>{{ $m['pemantauan_perilaku_gaya_hidup_pegawai'] }}</td>
+                            <td>{{ $m['pemantauan_pemenuhanan_kewajiban_lhk_pegawai'] }}</td>
                             <td>{{ $m['pelaksanaan_monev_zi'] }}</td>
+                            <td>{{ $m['pengolahan_analisis_data_informasi_pegawai'] }}</td>
+                            <td>{{ $m['pengolahan_hasil_survei_organisasi'] }}</td>
+                            <td>{{ $m['pemantauan_pengaduan_masyarakat'] }}</td>
                             <td class="fw-bold text-center">{{ $m['total_nilai'] }}</td>
                             <td><strong>{{ $m['simpulan_performa_pencegahan'] }}</strong></td>
                         </tr>

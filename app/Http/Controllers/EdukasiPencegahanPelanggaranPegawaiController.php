@@ -56,14 +56,16 @@ class EdukasiPencegahanPelanggaranPegawaiController extends Controller
             'output_project_learning' => 'required|integer|min:1|max:4',
 
             // Tambahan dari tabel
-            'jenis_kegiatan'   => 'required|string',
-            'tema'             => 'nullable|string',
-            'waktu'            => 'nullable|string',
-            'tempat'           => 'nullable|string',
-            'narasumber'       => 'nullable|string',
-            'jumlah_peserta'   => 'nullable|numeric',
-            'sasaran'          => 'nullable|string',
-            'keterangan'       => 'nullable|string',
+            'jenis_kegiatan'     => 'required|string',
+            'tema'               => 'nullable|string',
+            'waktu'              => 'nullable|string',
+            'tempat'             => 'nullable|string',
+            'metode_pelaksanaan' => 'nullable|string',
+            'narasumber'         => 'nullable|string',
+            'jumlah_peserta'     => 'nullable|numeric',
+            'kategori_peserta'   => 'nullable|string',
+            'sasaran'            => 'nullable|string',
+            'keterangan'         => 'nullable|string',
         ]);
 
         $total =
@@ -89,14 +91,16 @@ class EdukasiPencegahanPelanggaranPegawaiController extends Controller
             'kesimpulan' => $kesimpulan,
 
             // Field tambahan
-            'jenis_kegiatan'   => $request->jenis_kegiatan,
-            'tema'             => $request->tema,
-            'waktu'            => $request->waktu,
-            'tempat'           => $request->tempat,
-            'narasumber'       => $request->narasumber,
-            'jumlah_peserta'   => $request->jumlah_peserta,
-            'sasaran'          => $request->sasaran,
-            'keterangan'       => $request->keterangan,
+            'jenis_kegiatan'     => $request->jenis_kegiatan,
+            'tema'               => $request->tema,
+            'waktu'              => $request->waktu,
+            'tempat'             => $request->tempat,
+            'metode_pelaksanaan' => $request->metode_pelaksanaan,
+            'narasumber'         => $request->narasumber,
+            'jumlah_peserta'     => $request->jumlah_peserta,
+            'kategori_peserta'   => $request->kategori_peserta,
+            'sasaran'            => $request->sasaran,
+            'keterangan'         => $request->keterangan,
         ]);
 
         return redirect()->route('edukasi.index')->with('success', 'Data berhasil ditambahkan');
@@ -121,14 +125,16 @@ class EdukasiPencegahanPelanggaranPegawaiController extends Controller
             'output_project_learning' => 'required|integer|min:1|max:4',
 
             // Tambahan dari tabel
-            'jenis_kegiatan'   => 'required|string',
-            'tema'             => 'nullable|string',
-            'waktu'            => 'nullable|string',
-            'tempat'           => 'nullable|string',
-            'narasumber'       => 'nullable|string',
-            'jumlah_peserta'   => 'nullable|numeric',
-            'sasaran'          => 'nullable|string',
-            'keterangan'       => 'nullable|string',
+            'jenis_kegiatan'     => 'required|string',
+            'tema'               => 'nullable|string',
+            'waktu'              => 'nullable|string',
+            'tempat'             => 'nullable|string',
+            'metode_pelaksanaan' => 'nullable|string',
+            'narasumber'         => 'nullable|string',
+            'jumlah_peserta'     => 'nullable|numeric',
+            'kategori_peserta'   => 'nullable|string',
+            'sasaran'            => 'nullable|string',
+            'keterangan'         => 'nullable|string',
         ]);
 
         $total =
@@ -154,14 +160,16 @@ class EdukasiPencegahanPelanggaranPegawaiController extends Controller
             'kesimpulan' => $kesimpulan,
 
             // Field tambahan
-            'jenis_kegiatan'   => $request->jenis_kegiatan,
-            'tema'             => $request->tema,
-            'waktu'            => $request->waktu,
-            'tempat'           => $request->tempat,
-            'narasumber'       => $request->narasumber,
-            'jumlah_peserta'   => $request->jumlah_peserta,
-            'sasaran'          => $request->sasaran,
-            'keterangan'       => $request->keterangan,
+            'jenis_kegiatan'     => $request->jenis_kegiatan,
+            'tema'               => $request->tema,
+            'waktu'              => $request->waktu,
+            'tempat'             => $request->tempat,
+            'metode_pelaksanaan' => $request->metode_pelaksanaan,
+            'narasumber'         => $request->narasumber,
+            'jumlah_peserta'     => $request->jumlah_peserta,
+            'kategori_peserta'   => $request->kategori_peserta,
+            'sasaran'            => $request->sasaran,
+            'keterangan'         => $request->keterangan,
         ]);
 
         return redirect()->route('edukasi.index')->with('success', 'Data berhasil diperbarui');

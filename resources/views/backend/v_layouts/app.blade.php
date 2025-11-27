@@ -152,8 +152,28 @@
                                             </a>
                                         </li>
                                         <li class="sidebar-item">
+                                            <a href="{{ route('lhk.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Pemantauan LHK Pegawai </span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
                                             <a href="{{ route('pemantauan.index') }}" class="sidebar-link">
                                                 <i class="mdi mdi-minus"></i><span class="hide-menu"> Pemantauan Zona Integritas </span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('pegawai.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Pengolahan Data Pegawai </span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('survey.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Hasil Survey Organisasi</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="{{ route('pengaduan.index') }}" class="sidebar-link">
+                                                <i class="mdi mdi-minus"></i><span class="hide-menu"> Pengaduan Masyarakat </span>
                                             </a>
                                         </li>
                                     </ul>

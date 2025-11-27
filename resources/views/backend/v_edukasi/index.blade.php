@@ -48,9 +48,11 @@
                             <th>Waktu</th>
                             <th>Tema</th>
                             <th>Tempat</th>
+                            <th>Metode Pelaksanaan</th>
 
                             <th>Narasumber</th>      
-                            <th>Jumlah Peserta</th>
+                            <th>Jumlah Peserta (Internal)</th>
+                            <th>Kategori Peserta (Eksternal)</th>
                             <th>Sasaran</th>
                             <th>Indeks Efektivitas</th>
                             <th>Keterangan</th>
@@ -68,10 +70,12 @@
                             <td>{{ $d->waktu ?? '-' }}</td>
                             <td>{{ $d->tema ?? '-' }}</td>
                             <td>{{ $d->tempat ?? '-' }}</td>
+                            <td>{{ $d->metode_pelaksanaan ?? '-' }}</td>
 
                             {{-- Realisasi --}}
                             <td>{{ $d->narasumber ?? '-' }}</td>
-                            <td>{{ $d->jumlah_peserta ?? '-' }}</td>\
+                            <td>{{ $d->jumlah_peserta ?? '-' }}</td>
+                            <td>{{ $d->kategori_peserta ?? '-' }}</td>
                             <td>{{ $d->sasaran ?? '-' }}</td>
                             <td>{{ $d->indeks_efektivitas ?? '-' }}</td>
                             <td>{{ $d->keterangan ?? '-' }}</td>

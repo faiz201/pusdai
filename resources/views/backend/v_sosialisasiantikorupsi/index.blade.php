@@ -37,7 +37,7 @@
                     <thead>
                         <tr class="fw-bold" style="background:#f4c898;">
                             <th rowspan="2">No</th>
-                            <th colspan="6">Rencana Kegiatan</th>
+                            <th colspan="5">Rencana Kegiatan</th>
                             <th colspan="6" style="background:#b7ddb5;">Realisasi Pelaksanaan Kegiatan</th>
                             <th rowspan="2">Aksi</th>
                         </tr>
@@ -50,7 +50,8 @@
                             <th>Tempat</th>
 
                             <th>Narasumber</th>      
-                            <th>Jumlah Peserta</th>
+                            <th>Jumlah Peserta (Internal)</th>
+                            <th>Kategori Peserta (Eksternal)</th>
                             <th>Sasaran</th>
                             <th>Indeks Efektivitas</th>
                             <th>Keterangan</th>
@@ -71,7 +72,8 @@
 
                             {{-- Realisasi --}}
                             <td>{{ $d->narasumber ?? '-' }}</td>
-                            <td>{{ $d->jumlah_peserta ?? '-' }}</td>\
+                            <td>{{ $d->jumlah_peserta ?? '-' }}</td>
+                            <td>{{ $d->kategori_peserta ?? '-' }}</td>
                             <td>{{ $d->sasaran ?? '-' }}</td>
                             <td>{{ $d->indeks_efektivitas ?? '-' }}</td>
                             <td>{{ $d->keterangan ?? '-' }}</td>

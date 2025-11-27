@@ -55,27 +55,27 @@
 
                 <tbody>
                     <tr>
-                        <td>Pelaksanaan Dalam Setahun</td>
+                        <td>Indeks Pelaksanaan Dalam Setahun</td>
                         <td class="text-center">
                             <select name="indeks_pelaksanaan_dalam_setahun" id="pelaksanaan" class="form-control form-control-sm" required>
                                 <option value="">-- Pilih --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="1">1 (0-39%)</option>
+                                <option value="2">2 (60-79%)</option>
+                                <option value="3">3 (60-79%)</option>
+                                <option value="4">4 (80-100%)</option>
                             </select>
                         </td>
-                        <td>Jumlah kegiatan Edukasi Pencegahan Pelanggaran pegawai dalam satu tahun</td>
+                        <td>Jumlah kegiatan Edukasi Pencegahan Pelanggaran Pegawai dalam satu tahun</td>
                     </tr>
                     <tr>
                         <td>Peserta Kegiatan</td>
                         <td class="text-center">
                             <select name="indeks_peserta_kegiatan" id="peserta" class="form-control form-control-sm" required>
                                 <option value="">-- Pilih --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="1">1 (1 Kegiatan/lebih dengan 1 Bidang berbeda)</option>
+                                <option value="2">2 (2 Kegiatan/lebih dengan 2 Bidang berbeda)</option>
+                                <option value="3">3 (3 Kegiatan/lebih dengan 3 Bidang berbeda)</option>
+                                <option value="4">4 (4 Kegiatan/lebih dengan 4 Bidang berbeda)</option>
                             </select>
                         </td>
                         <td>Persentase pegawai yang mengikuti kegiatan</td>
@@ -85,10 +85,10 @@
                         <td class="text-center">
                             <select name="output_project_learning" id="output" class="form-control form-control-sm" required>
                                 <option value="">-- Pilih --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="1">1 (Belum Memadai)</option>
+                                <option value="2">2 (Kurang)</option>
+                                <option value="3">3 (Baik)</option>
+                                <option value="4">4 (Sangat Baik)</option>
                             </select>
                         </td>
                         <td>Kualitas laporan project learning</td>
@@ -141,6 +141,7 @@
                         <th>Waktu</th>
                         <th>Tema</th>
                         <th>Tempat</th>
+                        <th>Metode Pelaksanaan</th>
                     </tr>
                 </thead>
 
@@ -150,6 +151,13 @@
                         <td><input type="text" name="waktu" class="form-control"></td>
                         <td><input type="text" name="tema" class="form-control"></td>
                         <td><input type="text" name="tempat" class="form-control"></td>
+                        <td class="text-center">
+                            <select name="metode_pelaksanaan" id="metode" class="form-control form-control-sm" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="1">Sosialisasi/Seminar/Workshop (60%)</option>
+                                <option value="2">Diseminasi (40%)</option>
+                            </select>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -165,7 +173,8 @@
                 <thead class="text-center" style="background:#c6e0b4; font-weight:bold;">
                     <tr>
                         <th>Narasumber</th>
-                        <th>Jumlah Peserta</th>
+                        <th>Jumlah Peserta (Internal)</th>
+                        <th>Kategori Peserta (Eksternal)</th>
                         <th>Sasaran</th>
                         <th>Indeks Efektivitas</th>
                         <th>Keterangan</th>
@@ -174,8 +183,29 @@
 
                 <tbody>
                     <tr>
-                        <td><input type="text" name="narasumber" class="form-control"></td>
-                        <td><input type="number" name="jumlah_peserta" class="form-control"></td>
+                        <td class="text-center">
+                            <select name="narasumber" id="narasumber" class="form-control form-control-sm" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="1">Pimpinan Unit Kerja (2)</option>
+                                <option value="2">Selain Pimpinan Unit Kerja (1)</option>
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <select name="jumlah_peserta" id="peserta" class="form-control form-control-sm" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="1">1 (0-39%)</option>
+                                <option value="2">2 (40-59%)</option>
+                                <option value="3">3 (60-79%)</option>
+                                <option value="4">4 (80-100%)</option>
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <select name="kategori_peserta" id="kategori" class="form-control form-control-sm" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="1">Stakeholder / Pengguna Layanan (2)</option>
+                                <option value="2">Bukan Stakeholder / Pengguna Layanan (1)</option>
+                            </select>
+                        </td>
                         <td><input type="text" name="sasaran" class="form-control"></td>
                         <td><input type="text" name="indeks_efektivitas" class="form-control"></td>
                         <td><input type="text" name="keterangan" class="form-control"></td>
